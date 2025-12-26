@@ -22,6 +22,7 @@ class InternFactory extends Factory
             'matricule' => Str::uuid(),
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
+            'gender' => fake()->randomElement(['male', 'female']),
             'phone_number' => fake()->phoneNumber(),
             'school' => fake()->company(),
             'diploma' => fake()->randomElement(['HND', 'Degree', 'Masters', 'PhD']),

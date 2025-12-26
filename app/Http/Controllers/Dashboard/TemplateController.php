@@ -21,4 +21,14 @@ class TemplateController extends Controller {
         ]);
     }
 
+    public function show(string $slug) {
+
+        $template = TemplateService::getTemplate($slug);
+
+        return view('dashboard.templates.show', [
+            'dbTemplate' => Template::where(['slug' => $slug])->first(),
+            'template' => $template
+        ]);
+    }
+
 }

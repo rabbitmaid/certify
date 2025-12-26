@@ -44,7 +44,8 @@
                             <div class="px-3 flex justify-start gap-x-2">
 
                                 @if($dbTemplate->is_active)
-                                    <form action="">
+                                    <form action="{{ route('template.deactivate', $template['slug']) }}" method="POST">
+                                        @csrf
                                         <x-danger-button>
                                             {{ __('Deactivate') }}
                                         </x-danger-button>
@@ -52,7 +53,8 @@
 
                                     @else
 
-                                        <form action="">
+                                        <form action="{{ route('template.activate', $template['slug']) }}" method="POST">
+                                            @csrf
                                             <x-primary-button>
                                                 {{ __('Activate') }}
                                             </x-primary-button>

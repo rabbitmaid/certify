@@ -21,7 +21,8 @@ class TemplateController extends Controller {
         ]);
     }
 
-    public function show(string $slug) {
+    public function show(string $slug)
+    {
 
         $template = TemplateService::getTemplate($slug);
 
@@ -29,6 +30,24 @@ class TemplateController extends Controller {
             'dbTemplate' => Template::where(['slug' => $slug])->first(),
             'template' => $template
         ]);
+    }
+
+    public function activate(string $slug) 
+    {
+        $template = Template::where(['slug' => $slug])->first();
+        $template->update(['is_active' => true]);
+
+        toast('Template Activated!', 'success');
+        return redirect()->back();
+    }
+
+    public function deactivate(string $slug) 
+    {
+        $template = Template::where(['slug' => $slug])->first();
+        $template->update(['is_active' => false]);
+
+        toast('Template Deactivated!', 'success');
+        return redirect()->back();
     }
 
 }

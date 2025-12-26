@@ -85,6 +85,9 @@
             <x-responsive-nav-link :href="route('template.index')" :active="request()->routeIs('template.*')">
                 {{ __('Templates') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('intern.index')" :active="request()->routeIs('intern.*')">
+                {{ __('Interns') }}
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->

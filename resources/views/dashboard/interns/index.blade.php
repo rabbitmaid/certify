@@ -10,10 +10,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
             <div class="flex justify-end items-center mb-6">
-                <a href="#" 
-                   class="px-4 py-1.5 text-sm bg-gray-600 hover:bg-gray-600/90 text-white rounded-lg font-semibold transition">
-                    Add New
-                </a>
+                <x-link-button>Add New </x-link-button>
             </div>
     
             <div class="overflow-x-auto bg-white shadow rounded-lg">
@@ -52,16 +49,17 @@
                                     <a href="{{ route('dashboard.plans.edit', $plan->id) }}" class="bg-yellow-500 py-1 px-2 rounded text-center text-sm hover:underline hover:opacity-95 hover:shadow-sm" title="Edit">
                                         <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16.7574 2.99678L14.7574 4.99678H5V18.9968H19V9.23943L21 7.23943V19.9968C21 20.5491 20.5523 20.9968 20 20.9968H4C3.44772 20.9968 3 20.5491 3 19.9968V3.99678C3 3.4445 3.44772 2.99678 4 2.99678H16.7574ZM20.4853 2.09729L21.8995 3.5115L12.7071 12.7039L11.2954 12.7064L11.2929 11.2897L20.4853 2.09729Z"></path></svg>
                                     </a>
-    
-                                    
-                                    <form id="delete-plan-{{ $plan->id }}" 
-                                        action="{{ route('dashboard.plans.destroy') }}"  
+                                      
+                                   --}}
+
+                                    <form id="delete-plan-{{ $intern->id }}" 
+                                        action=""  
                                         method="POST" 
                                         class="delete-form inline">
                                         @csrf
                                         @method('DELETE')
     
-                                        <input type="hidden" name="id" value="{{ $plan->id }}">
+                                        <input type="hidden" name="id" value="{{ $intern->id }}">
     
                                         <button type="button"
                                             class="delete-button bg-red-600 text-white py-1 px-2 rounded text-center text-sm hover:underline hover:opacity-95 hover:shadow-sm">
@@ -69,7 +67,7 @@
                                                 <path d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM18 8H6V20H18V8ZM13.4142 13.9997L15.182 15.7675L13.7678 17.1817L12 15.4139L10.2322 17.1817L8.81802 15.7675L10.5858 13.9997L8.81802 12.232L10.2322 10.8178L12 12.5855L13.7678 10.8178L15.182 12.232L13.4142 13.9997ZM9 4V6H15V4H9Z"/>
                                             </svg>
                                         </button>
-                                    </form> --}}
+                                    </form> 
     
     
                                 </td>

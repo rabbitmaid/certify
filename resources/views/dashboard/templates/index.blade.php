@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout pageTitle="Certificate Templates">
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Certificate Themes') }}
@@ -7,7 +7,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
-
+            
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
 
                 @forelse ($templates as $template)

@@ -4,9 +4,14 @@ use App\Http\Controllers\Dashboard\InternController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Dashboard\TemplateController;
+use App\Services\FakeService;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/test', function () {
+    return FakeService::generate();
 });
 
 Route::get('/dashboard', function () {

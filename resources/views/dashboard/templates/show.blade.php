@@ -1,4 +1,5 @@
-<x-app-layout>
+@php $pageTitle = ucwords($template['slug']) . " Template" @endphp
+<x-app-layout pageTitle="{{ $pageTitle }}">
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __(ucwords($template['slug']) . " Template") }}
@@ -7,6 +8,10 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+            <div class="flex justify-end items-center mb-6">
+                <x-link-button href="{{ route('template.index') }}">Back </x-link-button>
+            </div>
 
             <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
                     

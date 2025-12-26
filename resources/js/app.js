@@ -1,5 +1,6 @@
 import './bootstrap';
 import "./table";
+import "./delete";
 
 import Alpine from 'alpinejs';
 

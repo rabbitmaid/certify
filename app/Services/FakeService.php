@@ -10,7 +10,7 @@ class FakeService {
     {
         $pdf = Pdf::loadView('templates.rabbitmaid.index', [
             'name' => 'John Doe'
-        ])->setPaper('a4', 'landscape');
+        ])->setPaper('a4', 'landscape')->setOption(['defaultFont' => 'sans-serif']);
 
         return $pdf->download('attest.pdf');
     }

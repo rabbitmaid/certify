@@ -21,6 +21,16 @@
             position: relative;
         }
 
+        .page > .authorization-up {
+            color: #e69e0e;
+            position: absolute;
+            font-size: 18px;
+            top: 29px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-weight: 700;
+        }
+
         .page>h1 {
             color: white;
             text-align: center;
@@ -38,18 +48,20 @@
 
         .page>.year {
             color: white;
-            font-size: 30px;
+            font-size: 35px;
             font-weight: 700;
             position: absolute;
-            left: 113px;
-            top: 250px;
+            left: 112px;
+            top: 242px;
+            font-style: italic;
+            font-family: 'Times New Roman', Times, serif;
         }
 
         .page>.intro {
             color: black;
             text-transform: uppercase;
             font-size: 26px;
-            font-weight: 600;
+            font-weight: 500;
             position: absolute;
             top: 320px;
             left: 50%;
@@ -61,33 +73,46 @@
         }
 
         .page>.name {
-            color: rgb(254, 130, 5);
+            color: #e69e0e;
             text-transform: uppercase;
             font-size: 40px;
             font-weight: 900;
             position: absolute;
             left: 50%;
-            top: 364px;
+            top: 340px;
             transform: translateX(-50%);
             width: 100%;
             text-align: center;
-            text-shadow: 2px 2px black;
-            font-style: normal;
-            font-family: serif;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .page>.stroke {
+            color: black;
+            text-transform: uppercase;
+            font-size: 40px;
+            scale: 1.0035;
+            font-weight: 900;
+            position: absolute;
+            left: 50.15%;
+            top: 340px;
+            transform: translateX(-50%);
+            width: 100%;
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
         }
 
         .page>.desc {
             position: absolute;
             font-size: 18px;
             text-align: center;
-            top: 440px;
+            top: 420px;
             left: 50%;
             transform: translateX(-50%);
             width: 100%;
-            font-weight: 500;
+            font-weight: 400;
             line-height: 1.5;
             font-style: normal;
-            font-family: Helvetica;
+            font-family: Arial, Helvetica, sans-serif;
         }
 
         .page > .authorization {
@@ -103,15 +128,28 @@
         .page>.notice {
             position: absolute;
             font-size: 18px;
-            color: rgb(254, 130, 5);
+            color: #e69e0e;
             font-weight: 700;
             font-style: italic;
             text-align: center;
-            top: 585px;
+            top: 558px;
             left: 50%;
             transform: translateX(-50%);
             width: 100%;
-            font-family: Helvetica;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .page>.uuid {
+            position: absolute;
+            color: black;
+            font-size: 16px;
+            bottom: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            width: 100%;
+            font-style: italic;
+            font-family: 'Courier New', Courier, monospace;
         }
 
         .page>.qr-code {
@@ -137,11 +175,15 @@
 <body>
 
     <div class="page a4">
+        <p class="authorization-up">
+            RC / YAO / 2023 / B /1851 DU 09 OCTOBER 2023
+        </p>
         <h1>Certificate <br /> <span class="part">Of Training</span></h1>
         <img src="{{ public_path('templates/rabbitmaid/assets/images/logo.png') }}" class="logo" />
         <p class="year">2026</p>
         <p class="intro">Proudly Presented To</p>
-        <p class="name">John Jobelane druad druid</p>
+        <p class="stroke">John Jobelane druad druid </p>
+        <p class="name">John Jobelane druad druid </p>
         <p class="desc">
             During his Training at ESCHOSYS TECHOLOGIES, <br />
             he gained hands-on experience in Graphic design, web development, SEO, GitHub,<br />
@@ -154,6 +196,8 @@
         </p>
 
         <p class="notice">This Certificate is issued to serve the purpose to which it is intended</p>
+
+         <p class="uuid">4f91f7be-d071-44cf-af1d-52ba147d528b</p>
         <img src="{{ public_path('templates/rabbitmaid/assets/images/qr-code.png') }}" class="qr-code" />
     </div>
 

@@ -12,7 +12,7 @@ class InternController extends Controller
     public function index()
     {
         return view('dashboard.interns.index', [
-            'interns' => Intern::orderByDesc('id')->paginate(5)
+            'interns' => Intern::with('user')->orderByDesc('id')->paginate(5)
         ]);
     }
 }

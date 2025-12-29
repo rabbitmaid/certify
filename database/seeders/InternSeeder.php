@@ -16,9 +16,11 @@ class InternSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = User::firstOrCreate([
+        $user = User::updateOrCreate(
+        [ 'email' => 'itern@example.com'],
+        [
             'name' => 'Intern User',
-            'email' => 'itern@example.com',
+            'gender' => 'male',
             'password' => Hash::make('password'),
             'email_verified_at' => now(),
             'remember_token' => Str::random(10)

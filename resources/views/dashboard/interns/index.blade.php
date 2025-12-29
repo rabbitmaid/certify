@@ -35,10 +35,11 @@
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
                         @forelse($interns as $intern)
+                        @dd($intern);
                             <tr class="hover:bg-gray-50 transition">
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $intern->name }}</td>
-                                <td>{{ $intern->gender }}</td>
+                                <td>{{ $intern->user->name }}</td>
+                                <td>{{ $intern->user->gender }}</td>
                                 <td>{{ $intern->created_at->toDayDateTimeString() }}</td>
                                 <td class="flex items-center justify-center gap-x-2">
     

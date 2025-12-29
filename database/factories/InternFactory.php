@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Services\MatriculeService;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -19,10 +20,7 @@ class InternFactory extends Factory
     public function definition(): array
     {
         return [
-            'matricule' => Str::uuid(),
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'gender' => fake()->randomElement(['male', 'female']),
+            'matricule' => MatriculeService::generate(),
             'phone_number' => fake()->phoneNumber(),
             'school' => fake()->company(),
             'diploma' => fake()->randomElement(['HND', 'Degree', 'Masters', 'PhD']),

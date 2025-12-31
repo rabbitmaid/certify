@@ -22,6 +22,7 @@
                             @if($template['screenshot'] == "no-screenshot.png")
                                 <img class="w-full" src="{{ asset("images/{$template['screenshot']}") }}" alt="Screenshot" />
                             @else
+                       
                                 @php 
                                     $screenShotPath = $template['slug'] . "/" .$template['screenshot']; 
                                 @endphp

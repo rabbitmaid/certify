@@ -1,8 +1,7 @@
 {
     "name" : "Dragon Ball",
     "version": "1.0",
-    "screenshot": "",
-    "preview": "",
+    "screenshot": "screenshot.png",
     "description": "Dragon ball is an attestation theme with awesome use of orange colors to create a good design",
     "author": "RabbitMaid",
     "email": "rabbitmaid@proton.me",

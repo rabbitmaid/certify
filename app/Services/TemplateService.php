@@ -36,12 +36,6 @@ class TemplateService {
                             $templateInfo["path"] = $templateFolderContent;
                             $templateInfo["slug"] = $templateFolder;
 
-                            if(array_key_exists("preview", $templateInfo)) {
-                                if(empty($templateInfo['preview'])) {
-                                    $templateInfo['preview'] = "no-preview.png";
-                                }
-                            }
-
                             if(array_key_exists("screenshot", $templateInfo)) {
                                 if(empty($templateInfo['screenshot'])) {
                                     $templateInfo['screenshot'] = "no-screenshot.png";

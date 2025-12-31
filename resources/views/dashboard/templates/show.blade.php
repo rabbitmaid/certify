@@ -1,17 +1,17 @@
 @php $pageTitle = ucwords($template['slug']) . " Template" @endphp
 <x-app-layout pageTitle="{{ $pageTitle }}">
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+      <div class="flex items-center justify-between">
+          <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __(ucwords($template['slug']) . " Template") }}
-        </h2>
+          </h2>
+
+          <x-link-button href="{{ route('template.index') }}">Back </x-link-button>
+      </div>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
-
-            <div class="flex justify-end items-center mb-6">
-                <x-link-button href="{{ route('template.index') }}">Back </x-link-button>
-            </div>
 
             <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
                     
@@ -21,16 +21,16 @@
 
                             <div class="bg-white shadow-sm rounded-lg p-5">
 
-                                @if($template['preview'] == "no-preview.png")
+                                @if($template['screenshot'] == "no-screenshot.png")
 
-                                    <img class="w-full" src="{{ asset("images/{$template['preview']}") }}" alt="Preview" />
+                                    <img class="w-full" src="{{ asset("images/{$template['screenshot']}") }}" alt="Screenshot" />
                         
                                 @else
                                     @php 
-                                        $previewPath = $template['slug'] . "/" .$template['preview']; 
+                                        $screenShotPath = $template['slug'] . "/" .$template['screenshot']; 
                                     @endphp
 
-                                    <img class="w-full" src="{{ Storage::disk('template')->url("$previewPath") }}" alt="Preview" />
+                                    <img class="w-full" src="{{ Storage::disk('template')->url("$screenShotPath") }}" alt="Screenshot" />
                             
                                 @endif
                            
@@ -40,19 +40,6 @@
 
                         <div class="col-span-1 bg-white overflow-hidden shadow-sm rounded-lg pb-5 relative h-fit">
 
-                             @if($template['screenshot'] == "no-screenshot.png")
-
-                                <img class="w-full" src="{{ asset("images/{$template['screenshot']}") }}" alt="Screenshot" />
-                        
-                            @else
-                                @php 
-                                    $screenShotPath = $template['slug'] . "/" .$template['screenshot']; 
-                                @endphp
-
-                                <img class="w-full h-[200px] object-cover" src="{{ Storage::disk('template')->url("$screenShotPath") }}" alt="Screenshot">
-                            @endif
-
-                            
                             <div class=" text-gray-900 px-5 my-3">
                                 <h2 class="mb-2 text-lg font-semibold">  {{ __("Other Information") }}</h2>
                                 

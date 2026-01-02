@@ -6,6 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
+        <link rel="shortcut icon" href="{{ asset('images/favicon.png')}}" type="image/x-icon">
+
         <title>{{ $pageTitle ?  config('app.name', 'Laravel') . ' - ' . $pageTitle :  config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->

@@ -7,6 +7,10 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+            <div class="flex justify-end items-center mb-6">
+                <x-link-button href="{{ route('template.create')}}">Upload </x-link-button>
+            </div>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
 
@@ -19,26 +23,31 @@
 
                         <div class="bg-white overflow-hidden shadow-sm rounded-lg pb-5 relative">
 
-                            @if($template['screenshot'] == "no-screenshot.png")
+                            <div class="h-[200px] overflow-hidden border-b-2 border-b-blue-600 w-full rounded-lg">
+                                @if($template['screenshot'] == "no-screenshot.png")
                                 <img class="w-full" src="{{ asset("images/{$template['screenshot']}") }}" alt="Screenshot" />
-                            @else
-                       
-                                @php 
-                                    $screenShotPath = $template['slug'] . "/" .$template['screenshot']; 
-                                @endphp
+                                @else
+                        
+                                    @php 
+                                        $screenShotPath = $template['slug'] . "/" .$template['screenshot']; 
+                                    @endphp
 
-                                <img src="{{ Storage::disk('template')->url("$screenShotPath") }}" alt="Screenshot">
-                            @endif
+                                    <img src="{{ Storage::disk('template')->url("$screenShotPath") }}" alt="Screenshot">
+                                @endif
 
+                            </div>
+                            
                             <div class=" text-gray-900 px-3 my-5">
                                 <h2 class="mb-2 text-lg font-semibold flex items-center justify-between gap-x-3">  
                                     {{ __($template['name']) }}
+                                </h2>
+                                <p class="mb-2">
                                     @if($dbTemplate->is_active) 
                                         <x-badge type="green"> Active </x-badge>
                                     @else
                                         <x-badge type="red"> Not Active </x-badge>
                                     @endif
-                                </h2>
+                                </p>
                                 <p> {{  Str::limit(__($template['description']), 40) }}</p>
                             </div>
 
@@ -47,9 +56,9 @@
                                 @if($dbTemplate->is_active)
                                     <form action="{{ route('template.deactivate', $template['slug']) }}" method="POST">
                                         @csrf
-                                        <x-danger-button>
+                                        <x-warning-button>
                                             {{ __('Deactivate') }}
-                                        </x-danger-button>
+                                        </x-warning-button>
                                     </form>
 
                                     @else
@@ -62,6 +71,15 @@
                                         </form>
 
                                     @endif
+
+                                    <form action="{{ route('template.destroy') }}" method="POST" class="delete-form">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="hidden" name="id" value="{{ $dbTemplate->id }}">
+                                        <x-danger-button type="button" class="delete-button">
+                                            {{ __('Delete') }}
+                                        </x-danger-button>
+                                    </form>
 
                         
                                     <a href="{{ route('template.show', $template['slug']) }}" class="bg-blue-500 text-white py-1 px-2 rounded text-center text-sm hover:underline hover:opacity-95 hover:shadow-sm block w-fit flex items-center" title="View">

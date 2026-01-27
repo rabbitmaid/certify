@@ -25,5 +25,3 @@
         @endif
    @endauth
 </div>
-
-{{-- <hr class="dark:border-neutral-700" /> --}}

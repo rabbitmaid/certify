@@ -35,7 +35,7 @@
 
                 <div class="max-w-xl mb-5 gap-5 flex flex-col md:flex-row items-center justify-between">
                     <h2 class="text-lg font-semibold">Upload Template</h2>
-                    <a class="px-4 py-1.5 text-sm bg-blue-600 hover:bg-blue-600/90 text-white rounded-lg font-semibold transition" href="{{ asset('sample/tickets.csv') }}">Download Sample</a>
+                    <a class="px-4 py-1.5 text-sm bg-blue-600 hover:bg-blue-600/90 text-white rounded-lg font-semibold transition" href="{{ asset('sample/rabbitmaid.zip') }}">Download Sample</a>
                 </div>
 
                 <div class="max-w-xl">

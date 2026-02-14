@@ -1,7 +1,7 @@
 <x-page-layout pageTitle="Apply">
 
 
-    <header class="w-full px-8 xl:px-0 bg-white shadow-sm">
+    <header class="w-full px-8 xl:px-0 bg-blue-950 shadow-sm">
         @include('pages.partials.navigation')
     </header>
 

@@ -1,17 +1,16 @@
 <x-page-layout pageTitle="Home">
 
 
-    <header class="w-full px-8 xl:px-0 bg-white shadow-sm">
+    <header class="w-full px-8 xl:px-0 bg-blue-950 shadow-sm">
         @include('pages.partials.navigation')
     </header>
 
-    <div class=" min-h-screen bg-pattern">
+    <div class="min-h-screen">
 
-        <section class="w-full mx-auto mb-10 px-8 xl:px-0 py-40">
+        <section class="w-full mx-auto px-8 xl:px-0 py-28 relative" style="background-image: url('{{ asset("images/bg.jpg") }}'); background-size: cover; background-color: #545353; background-blend-mode: overlay; background-position: center center;">
             <div class="container mx-auto flex flex-col items-center justify-center">
-
                 <div class="max-w-3xl">
-                    <h1 class="text-3xl lg:text-4xl xl:text-5xl font-semibold leading-snug xl:leading-normal capitalize mb-8 text-neutral-100 text-center">
+                    <h1 class="text-3xl lg:text-4xl xl:text-5xl font-semibold leading-snug xl:leading-normal capitalize mb-8 text-neutral-200 text-center">
                         Manage Internship <span class="text-orange-600"> Attestations </span> and <span class="text-orange-600"> Certificates </span> all in one place</h1>
 
                     <div class="flex items-center justify-center gap-3">

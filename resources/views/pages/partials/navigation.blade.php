@@ -4,9 +4,9 @@
     </a>
 
     <nav class="w-full flex items-center justify-center gap-5 mb-8 lg:mb-0">
-        <a class="text-neutral-200 hover:text-orange-600 font-semibold flex-shrink-0 {{ request()->routeIs('home') ? "text-primary" : '' }}" href="{{ route('home') }}">Home</a>
-        <a class="text-neutral-200 hover:text-orange-600 font-semibold flex-shrink-0" href="#">About Us</a>
-        <a class="text-neutral-200 hover:text-orange-600 font-semibold flex-shrink-0" href="#">Features</a>
+        <a class="text-neutral-200 hover:text-orange-600 font-semibold flex-shrink-0 uppercase tracking-wider transition-colors delay-75 ease-in-out {{ request()->routeIs('home') ? "text-primary" : '' }}" href="{{ route('home') }}">Home</a>
+        <a class="text-neutral-200 hover:text-orange-600 font-semibold flex-shrink-0 uppercase tracking-wider transition-colors delay-75 ease-in-out" href="#">About Us</a>
+        <a class="text-neutral-200 hover:text-orange-600 font-semibold flex-shrink-0 uppercase tracking-wider transition-colors delay-75 ease-in-out" href="#">Features</a>
     </nav>
 
     <a href="{{ route('apply') }}" class="bg-blue-600 hover:bg-blue-800 transition-colors ease-in-out text-white py-2 px-3 rounded-lg w-fit flex-shrink-0">Apply Now</a>

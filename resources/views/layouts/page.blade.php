@@ -22,7 +22,7 @@
             <!-- Page Content -->
             <main>
                 <!-- Content -->
-                <section id="content" class="min-h-screen w-full transition-all ease-in-out duration-300">
+                <section id="content" class="w-full transition-all ease-in-out duration-300">
 
                     {{ $slot }}
 

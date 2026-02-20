@@ -15,4 +15,9 @@ class PageController extends Controller
     {
         return view('pages.apply');
     }
+
+    public function track()
+    {
+        return view('pages.verify');
+    }
 }

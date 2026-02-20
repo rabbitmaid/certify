@@ -5,7 +5,7 @@
     <form method="post" action="{{ route('apply.store') }}" class="mt-6 space-y-6">
         @csrf
         <div>
-            <h4 class="block font-medium text-sm text-gray-700">Salutation *</h4>
+            <h4 class="block font-medium text-sm text-gray-700">Salutation <span class="required">*</span></h4>
 
             <div class="radio-group flex items-center gap-x-3 flex-wrap">
                 <div class="item flex-shrink-0">
@@ -51,40 +51,40 @@
         
      
         <div>
-            <x-input-label for="name" :value="__('Name (As on Birth Certificate)*')" />
+            <x-input-label for="name" :is_required="true" :value="__('Name (As on Birth Certificate)')" />
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name')" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
 
         <div>
-            <x-input-label for="idCardNumber" :value="__('ID Card Number*')" />
+            <x-input-label for="idCardNumber" :is_required="true" :value="__('ID Card Number')" />
             <x-text-input id="idCardNumber" name="idCardNumber" type="text" class="mt-1 block w-full" :value="old('idCardNumber')" required autofocus />
             <x-input-error class="mt-2" :messages="$errors->get('idCardNumber')" />
         </div>
 
         <div class="flex items-center flex-col lg:flex-row gap-3">
             <div class="w-full lg:basis-2/3">
-                <x-input-label for="email" :value="__('Email*')" />
+                <x-input-label for="email" :is_required="true" :value="__('Email')" />
                 <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email')" required autocomplete="username" />
                 <x-input-error class="mt-2" :messages="$errors->get('email')" />
             </div>
 
             <div class="w-full lg:basis-1/3">
-                <x-input-label for="phone" :value="__('Telephone Number*')" />
+                <x-input-label for="phone" :is_required="true" :value="__('Telephone Number')" />
                 <x-text-input id="phone" name="phone" type="text" class="mt-1 block w-full" :value="old('phone')" />
                 <x-input-error class="mt-2" :messages="$errors->get('phone')" />
             </div>
         </div>
 
         <div>
-            <x-input-label for="address" :value="__('Current Address*')" />
+            <x-input-label for="address" :is_required="true" :value="__('Current Address')" />
            <x-textarea id="address" name="address" class="mt-1 block w-full">{{ old('address') }}</x-textarea>
             <x-input-error class="mt-2" :messages="$errors->get('address')" />
         </div>
 
         <div class="flex flex-col gap-y-8 lg:gap-y-0 lg:flex-row lg:items-center lg:justify-start gap-x-32">
             <div>
-                <h4 class="block font-medium text-sm text-gray-700">Preferred Language *</h4>
+                <h4 class="block font-medium text-sm text-gray-700">Preferred Language <span class="required">*</span></h4>
                 <div class="radio-group flex items-center gap-x-3 flex-wrap">
                     <div class="item flex-shrink-0">
                         <input type="radio" name="preferredLanguage" id="english" value="english" {{ old('preferredLanguage') == 'english' ? 'checked' : '' }}>
@@ -100,7 +100,7 @@
             </div>
 
             <div>
-                <h4 class="block font-medium text-sm text-gray-700">Sex *</h4>
+                <h4 class="block font-medium text-sm text-gray-700">Gender <span class="required">*</span></h4>
                 <div class="radio-group flex items-center gap-x-3 flex-wrap">
                     <div class="item flex-shrink-0">
                         <input type="radio" name="gender" id="male" value="male" {{ old('gender') == 'male' ? 'checked' : '' }}>
@@ -119,7 +119,7 @@
 
 
         <div>
-            <h4 class="block font-medium text-sm text-gray-700">Marital Status *</h4>
+            <h4 class="block font-medium text-sm text-gray-700">Marital Status <span class="required">*</span></h4>
 
             <div class="radio-group flex items-center gap-x-3 flex-wrap">
                 <div class="item flex-shrink-0">
@@ -146,13 +146,13 @@
 
         <div class="flex items-center flex-col lg:flex-row gap-3">
             <div class="w-full">
-                <x-input-label for="dateOfBirth" :value="__('Date of Birth *')" />
+                <x-input-label for="dateOfBirth" :is_required="true" :value="__('Date of Birth')" />
                 <x-text-input id="dateOfBirth" name="dateOfBirth" type="date" class="mt-1 block w-full" :value="old('dateOfBirth')" required />
                 <x-input-error class="mt-2" :messages="$errors->get('dateOfBirth')" />
             </div>
 
             <div class="w-full">
-                <x-input-label for="placeOfBirth" :value="__('Place of Birth*')" />
+                <x-input-label for="placeOfBirth" :is_required="true" :value="__('Place of Birth')" />
                 <x-text-input id="placeOfBirth" name="placeOfBirth" type="text" class="mt-1 block w-full" :value="old('placeOfBirth')" />
                 <x-input-error class="mt-2" :messages="$errors->get('placeOfBirth')" />
             </div>
@@ -161,7 +161,7 @@
 
         <div class="flex items-center flex-col lg:flex-row gap-3">
             <div class="w-full">
-                <x-input-label for="academicDiplomas" :value="__('Academic Diplomas')" />
+                <x-input-label for="academicDiplomas" :value="__('Diplomas')" />
                 <x-textarea id="academicDiplomas" name="academicDiplomas" class="mt-1 block w-full">{{ old('academicDiplomas') }}</x-textarea>
                 <x-input-error class="mt-2" :messages="$errors->get('academicDiplomas')" />
             </div>

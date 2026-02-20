@@ -1,14 +1,15 @@
 <?php
+use App\Http\Controllers\Dashboard\Admin\InternController;
+use App\Http\Controllers\Dashboard\Admin\SettingController;
+use App\Http\Controllers\Dashboard\Admin\TemplateController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Dashboard\InternController;
-use App\Http\Controllers\Dashboard\TemplateController;
 
 
 
-Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function(){
+Route::prefix('/dashboard')->middleware(['auth', 'role:admin', 'verified'])->group(function(){
     
     Route::get('/', function () {
-        return view('dashboard.index');
+        return view('dashboard.admin.index');
     })->name('dashboard');
 
     // templates
@@ -24,4 +25,6 @@ Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function(){
     Route::prefix('interns')->group(function() {
         Route::get('/', [InternController::class, 'index'])->name('intern.index');
     });
+
+    Route::get('/settings', [SettingController::class, 'index'])->name('setting.index');
 });

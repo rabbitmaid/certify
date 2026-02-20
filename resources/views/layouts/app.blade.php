@@ -22,7 +22,13 @@
     <body class="font-sans antialiased">
         @include('sweetalert::alert')
         <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
+           @if(auth()->user()->hasRole('admin'))
+                 @include('layouts.navigation-admin')
+           @endif
+
+            @if(auth()->user()->hasRole('intern'))
+                 @include('layouts.navigation-intern')
+           @endif
 
             <!-- Page Heading -->
             @isset($header)

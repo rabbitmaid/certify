@@ -1,15 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard;
-use Exception;
+namespace App\Http\Controllers\Dashboard\Admin;
 use App\Models\Template;
-
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Services\TemplateService;
-use Illuminate\Support\Collection;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Storage;
 
 class TemplateController extends Controller {
 
@@ -17,7 +13,7 @@ class TemplateController extends Controller {
     {
        $templates = TemplateService::getTemplates();
        
-        return view('dashboard.templates.index', [
+        return view('dashboard.admin.templates.index', [
             'dbTemplates' => Template::orderByDesc('id')->get(),
             'templates' => $templates
         ]);
@@ -25,7 +21,7 @@ class TemplateController extends Controller {
 
     public function create() 
     {
-        return view('dashboard.templates.create');
+        return view('dashboard.admin.templates.create');
     }
 
     public function upload(Request $request) {
@@ -54,7 +50,7 @@ class TemplateController extends Controller {
 
         $template = TemplateService::getTemplate($slug);
 
-        return view('dashboard.templates.show', [
+        return view('dashboard.admin.templates.show', [
             'dbTemplate' => Template::where(['slug' => $slug])->first(),
             'template' => $template
         ]);

@@ -4,24 +4,31 @@
     </a>
 
     <nav class="w-full flex items-center justify-center gap-5 mb-8 lg:mb-0">
-        <a class="text-neutral-200 hover:text-orange-600 font-semibold flex-shrink-0 uppercase tracking-wider transition-colors delay-75 ease-in-out {{ request()->routeIs('home') ? "text-primary" : '' }}" href="{{ route('home') }}">Home</a>
-        <a class="text-neutral-200 hover:text-orange-600 font-semibold flex-shrink-0 uppercase tracking-wider transition-colors delay-75 ease-in-out" href="#">About Us</a>
-        <a class="text-neutral-200 hover:text-orange-600 font-semibold flex-shrink-0 uppercase tracking-wider transition-colors delay-75 ease-in-out" href="#">Features</a>
+        <a class="text-neutral-200 hover:text-orange-600 font-semibold flex-shrink-0 uppercase tracking-wider transition-colors delay-75 ease-in-out {{ request()->routeIs('home') ? "text-orange-600" : '' }}" href="{{ route('home') }}">Home</a>
+        <a class="text-neutral-200 hover:text-orange-600 font-semibold flex-shrink-0 uppercase tracking-wider transition-colors delay-75 ease-in-out {{ request()->routeIs('track') ? "text-orange-600" : '' }}" href="{{ route('track') }}">Track and Trace</a>
+        <a class="text-neutral-200 hover:text-orange-600 font-semibold flex-shrink-0 uppercase tracking-wider transition-colors delay-75 ease-in-out {{ request()->routeIs('apply') ? "text-orange-600" : '' }}" href="{{ route('register') }}">Apply For Internship</a>
     </nav>
 
-    <a href="{{ route('apply') }}" class="bg-blue-600 hover:bg-blue-800 transition-colors ease-in-out text-white py-2 px-3 rounded-lg w-fit flex-shrink-0">Apply Now</a>
+
 
    @guest
-    <a href="{{ route('login') }}" class="bg-orange-600 hover:bg-orange-800 transition-colors ease-in-out text-white py-2 px-3 rounded-lg w-fit flex-shrink-0">Login</a>
+    <a href="{{ route('login') }}" class="bg-orange-600 hover:bg-orange-800 transition-colors ease-in-out text-white py-2 px-3 rounded-lg w-fit flex-shrink-0">Account Login</a>
    @endguest
 
-   @auth
-        @if(auth()->user()->hasRole('admin'))
-            <a href="{{ route('dashboard') }}" class="bg-orange-600 hover:bg-orange-800 transition-colors ease-in-out text-white py-2 px-3 rounded-lg w-fit flex-shrink-0">Dashboard</a>
-        @endif
+   <div class="flex justify-center items-center gap-2">
+        @auth
+            @if(auth()->user()->hasRole('admin'))
+                <a href="{{ route('dashboard') }}" class="bg-blue-600 hover:bg-blue-800 transition-colors ease-in-out text-white py-2 px-3 rounded-lg w-fit flex-shrink-0">Dashboard</a>
+            @endif
 
-        @if(auth()->user()->hasRole('intern'))
-            <a href="" class="bg-orange-600 hover:bg-orange-800 transition-colors ease-in-out text-white py-2 px-3 rounded-lg w-fit flex-shrink-0">Dashboard</a>
-        @endif
-   @endauth
+            @if(auth()->user()->hasRole('intern'))
+                <a href="" class="bg-blue-600 hover:bg-blue-800 transition-colors ease-in-out text-white py-2 px-3 rounded-lg w-fit flex-shrink-0">Dashboard</a>
+            @endif
+
+            <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button class="bg-orange-600 hover:bg-orange-800 transition-colors ease-in-out text-white py-2 px-3 rounded-lg w-fit flex-shrink-0">Logout</button>
+            </form>
+    @endauth
+   </div>
 </div>

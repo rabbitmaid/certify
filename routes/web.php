@@ -1,13 +1,12 @@
 <?php
 
-use App\Http\Controllers\Dashboard\InternController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Dashboard\TemplateController;
 use App\Http\Controllers\PageController;
 use App\Services\FakeService;
 
 Route::get('/', [PageController::class, 'index'])->name('home');
+Route::get('/track', [PageController::class, 'track'])->name('track');
 
 Route::get('/test', function () {
     return FakeService::generate();
@@ -23,4 +22,5 @@ Route::get('/apply', [PageController::class, 'apply'])->name('apply');
 Route::post('/apply/store', [PageController::class, 'storeApplication'])->name('apply.store');
 
 require __DIR__.'/auth.php';
-require __DIR__.'/dashboard.php';
+require __DIR__.'/admin.php';
+require __DIR__.'/intern.php';

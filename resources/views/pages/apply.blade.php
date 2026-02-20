@@ -9,7 +9,7 @@
     <div class="max-w-3xl mx-auto py-8 px-8 xl:px-0 pb-20">
 
         <header class="text-center">
-            <h1 class="text-lg font-medium text-gray-900">
+            <h1 class="text-3xl mb-4 font-medium text-gray-900">
                 {{ __('Apply for an Internship') }}
             </h1>
     

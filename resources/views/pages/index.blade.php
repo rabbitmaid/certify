@@ -4,49 +4,74 @@
         @include('pages.partials.navigation')
     </header>
 
-    <section class="w-full mx-auto px-8 xl:px-0 py-28 relative" style="background-image: url('{{ asset("images/bg.jpg") }}'); background-size: cover; background-color: #545353; background-blend-mode: overlay; background-position: center center;">
-        <div class="container mx-auto flex flex-col items-center justify-center">
+    <section class="w-full mx-auto px-8 xl:px-0 py-24  relative" style="background-image: url('{{ asset("images/bg.jpg") }}'); background-size: cover; background-color: #545353; background-blend-mode: overlay; background-position: center center;">
+        <div class="container max-w-7xl mx-auto flex flex-col items-center justify-center">
             <div class="max-w-3xl">
                 <h1 class="text-3xl lg:text-4xl xl:text-5xl font-semibold leading-snug xl:leading-normal capitalize mb-8 text-neutral-200 text-center">
                     Manage Internship <span class="text-orange-600"> Attestations </span> and <span class="text-orange-600"> Certificates </span> all in one place</h1>
-
-                <div class="flex items-center justify-center gap-3">
-                    <a href="{{ route('apply') }}" class="text-white bg-blue-600 hover:bg-blue-600 rounded-lg block w-full py-2 px-3 hover:bg-blue-800 transition-all ease-in-out max-w-32 text-center">Apply Now</a>
-
-                    @auth
-                    @if(auth()->user()->hasRole('admin'))
-                    <a href="{{ route('dashboard') }}" class="bg-orange-600 hover:bg-orange-800 transition-colors ease-in-out text-white py-2 px-3 rounded-lg w-fit flex-shrink-0">Dashboard</a>
-                    @endif
-
-                    @if(auth()->user()->hasRole('intern'))
-                    <a href="" class="bg-orange-600 hover:bg-orange-800 transition-colors ease-in-out text-white py-2 px-3 rounded-lg w-fit flex-shrink-0">Dashboard</a>
-                    @endif
-                    @endauth
-
-                    @guest
-                    <a href="{{ route('login') }}" class="bg-orange-600 hover:bg-orange-800 transition-colors ease-in-out text-white py-2 px-3 rounded-lg w-full flex-shrink-0 max-w-32 text-center">Login</a>
-                    @endguest
-
-                </div>
             </div>
 
         </div>
     </section>
 
-    <section class="w-full mx-auto bg-neutral-50 py-10">
-        <div class="container max-w-7xl mx-auto px-8 md:px-0">
+    <section class="w-full py-12 px-8 xl:px-0">
 
-            <h2 class="text-center text-3xl mb-5 font-semibold">Verify Certificate Reference</h2>
-            <form action="">
-                <div class="flex items-center max-w-2xl mx-auto">
-                    <x-text-input class="block w-full rounded-e-none" placeholder="Reference" />
-                    <x-primary-button class="!text-base py-2 rounded-s-none bg-blue-800 hover:bg-blue-900"> Verify </x-primary-button>
-                </div>
-            </form>
+        <h2 class="text-center mb-8 text-3xl section-heading max-w-7xl mx-auto relative ">Available Features</h2>
 
-            <p class="text-center my-8 bg-orange-600 text-white w-fit rounded-lg mx-auto py-1 px-3">Verify the validity of a certificate</p>
+        <div class="container max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-5">
+
+            <div class="rounded shadow-md py-5 px-3 border border-neutral-300 flex flex-col items-center justify-center gap-y-2 border-b-4 border-b-blue-900 rounded-b-lg cursor-pointer hover:scale-105 transition-all delay-75 ease-in-out">
+
+                <span class="border-2 border-blue-900 w-10 h-10 flex items-center justify-center rounded-full py-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="bi bi-file-earmark-text fill-blue-900" viewBox="0 0 16 16">
+                        <path d="M5.5 7a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zM5 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5" />
+                        <path d="M9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.5zm0 1v2A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z" />
+                    </svg>
+                </span>
+
+                <h2 class="text-xl">Generate Certificates</h2>
+
+                <p>Easily generate certificates and attestations</p>
+
+            </div>
+
+            <div class="rounded shadow-md py-5 px-3 border border-neutral-300 flex flex-col items-center justify-center gap-y-2 border-b-4 border-b-orange-600 rounded-b-lg cursor-pointer hover:scale-105 transition-all delay-75 ease-in-out">
+
+                <span class="border-2 border-orange-600 w-10 h-10 flex items-center justify-center rounded-full py-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="fill-orange-600" viewBox="0 0 16 16">
+                        <path d="M5.338 1.59a61 61 0 0 0-2.837.856.48.48 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.7 10.7 0 0 0 2.287 2.233c.346.244.652.42.893.533q.18.085.293.118a1 1 0 0 0 .101.025 1 1 0 0 0 .1-.025q.114-.034.294-.118c.24-.113.547-.29.893-.533a10.7 10.7 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.8 11.8 0 0 1-2.517 2.453 7 7 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7 7 0 0 1-1.048-.625 11.8 11.8 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 63 63 0 0 1 5.072.56" />
+                        <path d="M9.5 6.5a1.5 1.5 0 0 1-1 1.415l.385 1.99a.5.5 0 0 1-.491.595h-.788a.5.5 0 0 1-.49-.595l.384-1.99a1.5 1.5 0 1 1 2-1.415" />
+                    </svg>
+
+
+                </span>
+
+                <h2 class="text-xl">Validate Attestation</h2>
+
+                <p>Verify attestation validity</p>
+
+            </div>
+
+            <div class="rounded shadow-md py-5 px-3 border border-neutral-300 flex flex-col items-center justify-center gap-y-2 border-b-4 border-b-blue-900 rounded-b-lg cursor-pointer hover:scale-105 transition-all delay-75 ease-in-out">
+
+                <span class="border-2 border-blue-900 w-10 h-10 flex items-center justify-center rounded-full py-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="bi bi-file-earmark-text fill-blue-900" viewBox="0 0 16 16">
+                       <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1L7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002-.014.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6.936 9.28a6 6 0 0 0-1.23-.247A7 7 0 0 0 5 9c-4 0-5 3-5 4q0 1 1 1h4.216A2.24 2.24 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816M4.92 10A5.5 5.5 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4"/>
+                    </svg>
+
+                    
+                </span>
+
+                <h2 class="text-xl">Manage Interns</h2>
+
+                <p>Register and Manage interns easily</p>
+
+            </div>
+
         </div>
+
     </section>
+
 
     <section class="w-full mx-auto bg-neutral-50 bg-rough backdrop:blur-xl border-y-2 py-10 px-8 xl:px-0">
 
@@ -58,6 +83,7 @@
             <img class="w-40 lg:w-1/6" src="{{ asset('images/alpine.svg') }}" alt="Alpine JS Logo">
         </div>
     </section>
+
 
 
 </x-page-layout>

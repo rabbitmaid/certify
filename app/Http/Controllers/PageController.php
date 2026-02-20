@@ -11,11 +11,6 @@ class PageController extends Controller
         return view('pages.index');
     }
 
-    public function apply()
-    {
-        return view('pages.apply');
-    }
-
     public function track()
     {
         return view('pages.verify');

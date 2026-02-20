@@ -9,7 +9,7 @@ class Intern extends Model
 {
     use HasFactory;
     
-    protected $fillable = ["user_id", "matricule", "name", "email", "gender", "phone_number", "school", "diploma", "department", "duration", "start_date", "end_date"];
+    protected $fillable = ["user_id", "matricule", "salutation", "id_card_number", "phone_number", "school", "diploma", "department", "level",  "duration", "start_date", "end_date", "date_of_birth", "language", "other_information"];
 
 
     public function user() {

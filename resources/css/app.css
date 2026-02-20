@@ -26,5 +26,5 @@
 }
 
 label + span.required, span.required {
-    @apply text-red-500 text-lg;
+    @apply text-red-500 text-base mb-0;
 }

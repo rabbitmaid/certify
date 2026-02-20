@@ -22,7 +22,7 @@
             @endif
 
             @if(auth()->user()->hasRole('intern'))
-                <a href="" class="bg-blue-600 hover:bg-blue-800 transition-colors ease-in-out text-white py-2 px-3 rounded-lg w-fit flex-shrink-0">Dashboard</a>
+                <a href="{{ route('dashboard.intern') }}" class="bg-blue-600 hover:bg-blue-800 transition-colors ease-in-out text-white py-2 px-3 rounded-lg w-fit flex-shrink-0">Dashboard</a>
             @endif
 
             <form action="{{ route('logout') }}" method="POST">

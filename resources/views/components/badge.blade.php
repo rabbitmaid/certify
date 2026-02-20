@@ -18,3 +18,4 @@
 <span {{ $attributes->merge(['class' => "text-xs tracking-widest font-semibold py-1 px-3 rounded-full uppercase $classes"]) }}>
     {{ $slot }}
 </span>
+

@@ -14,4 +14,11 @@ class InternController extends Controller
             'interns' => Intern::with('user')->orderByDesc('id')->paginate(5)
         ]);
     }
+
+    public function show(int $id)
+    {
+        return view('dashboard.admin.interns.show', [
+            'intern' => Intern::with('user')->where(['id' => $id])->first()
+        ]);
+    }
 }

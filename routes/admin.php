@@ -24,6 +24,7 @@ Route::prefix('/dashboard')->middleware(['auth', 'role:admin', 'verified'])->gro
     // interns
     Route::prefix('interns')->group(function() {
         Route::get('/', [InternController::class, 'index'])->name('intern.index');
+        Route::get('/{id}', [InternController::class, 'show'])->name('intern.show');
     });
 
     Route::get('/settings', [SettingController::class, 'index'])->name('setting.index');

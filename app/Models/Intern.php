@@ -11,6 +11,11 @@ class Intern extends Model
     
     protected $fillable = ["user_id", "matricule", "salutation", "id_card_number", "phone_number", "school", "diploma", "department", "level",  "duration", "start_date", "end_date", "date_of_birth", "language", "other_information"];
 
+    protected $casts = [
+        "start_date" => "date",
+        "end_date" => "date"
+    ];
+
 
     public function user() {
         return $this->belongsTo(User::class);

@@ -1,16 +1,16 @@
 <x-app-layout pageTitle="Certificate Templates">
+
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Certificate Themes') }}
-        </h2>
+        <div class="flex justify-between items-center">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('Certificate Themes') }}
+            </h2>
+             <x-link-button href="{{ route('template.create')}}">Upload </x-link-button>
+        </div>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
-
-            <div class="flex justify-end items-center mb-6">
-                <x-link-button href="{{ route('template.create')}}">Upload </x-link-button>
-            </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
 

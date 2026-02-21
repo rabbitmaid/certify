@@ -2,20 +2,21 @@
 
   <div class="overflow-x-auto bg-white shadow rounded-lg">
 
-     <form action="{{ $bulk_route }}" method="POST" id="bulkForm">
-            @csrf
-     </form>
-
+      
+      <form action="{{ $bulk_route }}" method="POST" id="bulkForm">
+             @csrf
+      </form>
+      
       <div class="my-5 flex flex-col md:flex-row space-y-5 md:space-y-0 justify-between items-center px-5">
-
+          
          <div class="flex gap-2 w-full md:w-fit">
-                  <x-select-input name="bulk_option" form="bulkForm">
+                  <x-select-input name="bulk_option" id="bulk-form-select" form="bulkForm">
                       <option disabled selected>Bulk Options</option>
-                      <option value="accept">Accept</option>
-                      <option value="reject">Reject</option>
+                      <option value="approve">Approve</option>
+                      <option value="unapprove">Unapprove</option>
                       <option value="delete">Delete</option>
                   </x-select-input>
-                  <x-primary-button type="submit" form="bulkForm">Execute</x-primary-button>
+                  <x-primary-button type="submit" form="bulkForm" class="bulk-button">Execute</x-primary-button>
          </div>
 
           <div class="w-full md:w-fit">

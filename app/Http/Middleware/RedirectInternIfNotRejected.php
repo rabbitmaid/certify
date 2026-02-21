@@ -7,7 +7,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class RedirectInternIfRejected
+class RedirectInternIfNotRejected
 {
     /**
      * Handle an incoming request.
@@ -16,15 +16,15 @@ class RedirectInternIfRejected
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if($request->user()->hasRole('intern')) {
+         if($request->user()->hasRole('intern')) {
 
             $intern = Intern::whereUserId($request->user()->id)->first();
 
-            if($intern->status == "rejected") {
-                return redirect()->route('dashboard.intern.onboarding.edit', $intern->id);
+            if($intern->status !== "rejected") {
+                return redirect()->route('dashboard.intern');
             }
         }
-
+        
         return $next($request);
     }
 }

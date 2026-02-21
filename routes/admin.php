@@ -34,6 +34,9 @@ Route::prefix('/dashboard')->middleware(['auth', 'role:admin', 'verified'])->gro
         
         Route::put('/reject', [InternController::class, 'reject'])->name('intern.reject');
 
+
+        Route::post('/bulk', [InternController::class, 'bulkActions'])->name('intern.bulk.actions');
+
         Route::delete('/destroy', [InternController::class, 'destroy'])->name('intern.destroy');
 
         Route::get('/edit/{id}', [InternController::class, 'edit'])->name('intern.edit');

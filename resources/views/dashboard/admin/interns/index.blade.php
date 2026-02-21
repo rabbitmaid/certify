@@ -12,7 +12,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
-            <x-table search_route="" bulk_route="">
+            <x-table search_route="" bulk_route="{{ route('intern.bulk.actions') }}">
 
                     <thead class="bg-gray-50">
                         <tr>
@@ -46,6 +46,17 @@
                                 </td>
                                 <td><strong>{{ $intern->matricule ?? '' }}</strong></td>
                                 <td class="flex items-center justify-end gap-x-2">
+
+                                    @if($intern->status === "rejected")
+                                          <form action="{{ route('intern.approve') }}" method="POST">
+                                            @csrf
+                                            @method('patch')
+                                            <input type="hidden" name="id" value="{{ $intern->id }}" />
+                                            <button type="submit" class="bg-green-600 uppercase text-white font-semibold text-xs tracking-widest py-1 px-2 rounded text-center hover:bg-green-600/80 hover:shadow-sm" title="Approve">
+                                                Approve
+                                            </button>
+                                        </form>
+                                    @endif
 
                                     @if($intern->status === "pending")
                                         <form action="{{ route('intern.approve') }}" method="POST">

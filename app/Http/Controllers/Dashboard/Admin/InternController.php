@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Services\MatriculeService;
 use Illuminate\Http\Request;
 
+use function Laravel\Prompts\confirm;
 
 class InternController extends Controller
 {
@@ -177,5 +178,51 @@ class InternController extends Controller
         alert()->success('Submission Deleted', 'You have successfully deleted the submission');
 
         return redirect()->route('intern.index');
+    }
+
+    public function bulkActions(Request $request)
+    {
+        $validated = $request->validate([
+            'bulk_option' => ['required', 'string', 'in:approve,unapprove,delete'],
+            'interns.*' => ['integer', 'exists:interns,id'],
+        ]);
+
+        if($validated['bulk_option'] === 'approve')
+        {
+            foreach($validated['interns'] as $id)  {
+                $intern = Intern::findOrFail($id);
+                $intern->update(['status' => 'approved', 'rejected_reason' => null]);
+            }
+
+            alert()->success('Submissions Approved', 'You have successfully approved the selected submissions');
+
+            return redirect()->route('intern.index');
+        }   
+
+        if($validated['bulk_option'] === 'unapprove')
+        {
+            foreach($validated['interns'] as $id)  {
+                $intern = Intern::findOrFail($id);
+                $intern->update(['status' => 'pending', 'rejected_reason' => null]);
+            }
+
+            alert()->success('Submissions Unapproved', 'You have successfully unapproved the selected submissions');
+
+            return redirect()->route('intern.index');
+        }
+
+        if($validated['bulk_option'] === 'delete') {
+
+            foreach($validated['interns'] as $id)  {
+                $intern = Intern::findOrFail($id);
+                $intern->delete();
+            }
+
+            alert()->success('Submissions Deleted', 'You have successfully deleted the selected submissions'); 
+            return redirect()->route('intern.index');
+        }
+    
+        return redirect()->back();
+         
     }
 }

@@ -16,7 +16,7 @@
             <!-- Main Content -->
             <main class="space-y-6">
                 <div class="bg-white shadow rounded-lg p-6">
-                    <h1 class="text-3xl font-bold text-[#2b3990]">User Information</h1>
+                    <h1 class="text-3xl font-bold text-[#2b3990]">Account Information</h1>
 
                     <div class="mt-4 grid grid-cols-2 gap-4 text-gray-700">
                         <div>
@@ -50,7 +50,7 @@
                 </div>
 
                 <div class="bg-white shadow rounded-lg p-6">
-                    <h1 class="text-3xl font-bold text-[#2b3990]">Profile Information</h1>
+                    <h1 class="text-3xl font-bold text-[#2b3990]">Personal Information</h1>
 
                     <div class="mt-4 grid grid-cols-3 gap-4 text-gray-700">
                         <div>

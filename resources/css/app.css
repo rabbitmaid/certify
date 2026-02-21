@@ -5,7 +5,7 @@
 @layer {
     td,
     th {
-        @apply py-1.5 px-4 text-center;
+        @apply py-1.5 px-4 text-start;
     }
 
     .bg-pattern {

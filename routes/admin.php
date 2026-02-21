@@ -24,6 +24,21 @@ Route::prefix('/dashboard')->middleware(['auth', 'role:admin', 'verified'])->gro
     // interns
     Route::prefix('interns')->group(function() {
         Route::get('/', [InternController::class, 'index'])->name('intern.index');
+        Route::get('/create', [InternController::class, 'create'])->name('intern.create');
+        Route::post('/store', [InternController::class, 'store'])->name('intern.store');
+
+        Route::patch('/approve', [InternController::class, 'approve'])->name('intern.approve');
+        Route::patch('/unapprove', [InternController::class, 'unapprove'])->name('intern.unapprove');
+
+        Route::get('/reject/{id}', [InternController::class, 'rejectReason'])->name('intern.reject.reason');
+        
+        Route::put('/reject', [InternController::class, 'reject'])->name('intern.reject');
+
+        Route::delete('/destroy', [InternController::class, 'destroy'])->name('intern.destroy');
+
+        Route::get('/edit/{id}', [InternController::class, 'edit'])->name('intern.edit');
+        Route::put('/update/{id}', [InternController::class, 'update'])->name('intern.update');
+
         Route::get('/{id}', [InternController::class, 'show'])->name('intern.show');
     });
 

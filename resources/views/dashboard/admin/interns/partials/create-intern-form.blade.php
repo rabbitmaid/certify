@@ -1,5 +1,5 @@
 <section>
-    <form method="post" action="{{ route('dashboard.intern.onboarding.store') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('intern.store') }}" class="mt-6 space-y-6">
         @csrf
         <div>
             <h4 class="block font-medium text-sm text-gray-700">Salutation <span class="required">*</span></h4>
@@ -7,45 +7,57 @@
             <div class="radio-group flex items-center gap-x-3 flex-wrap">
                 <div class="item flex-shrink-0">
                     <input type="radio" name="salutation" id="miss" value="miss" {{ old('salutation') == 'miss' ? 'checked' : '' }}>
-                    <x-input-label for="miss" class="inline-block cursor-pointer" :value="__('Miss')"/>
+                    <x-input-label for="miss" class="inline-block cursor-pointer" :value="__('Miss')" />
                 </div>
 
                 <div class="item flex-shrink-0">
                     <input type="radio" name="salutation" id="mr" value="mr" {{ old('salutation') == 'mr' ? 'checked' : '' }}>
-                    <x-input-label for="mr" class="inline-block cursor-pointer" :value="__('Mr')"/>    
+                    <x-input-label for="mr" class="inline-block cursor-pointer" :value="__('Mr')" />
                 </div>
 
                 <div class="item flex-shrink-0">
                     <input type="radio" name="salutation" id="mrs" value="mrs" {{ old('salutation') == 'mrs' ? 'checked' : '' }}>
-                    <x-input-label for="mrs" class="inline-block cursor-pointer" :value="__('Mrs')"/>    
+                    <x-input-label for="mrs" class="inline-block cursor-pointer" :value="__('Mrs')" />
                 </div>
 
                 <div class="item flex-shrink-0">
                     <input type="radio" name="salutation" id="dr" value="dr" {{ old('salutation') == 'dr' ? 'checked' : '' }}>
-                    <x-input-label for="dr" class="inline-block cursor-pointer" :value="__('Dr')"/>    
+                    <x-input-label for="dr" class="inline-block cursor-pointer" :value="__('Dr')" />
                 </div>
 
                 <div class="item flex-shrink-0">
                     <input type="radio" name="salutation" id="prof" value="prof" {{ old('salutation') == 'prof' ? 'checked' : '' }}>
-                    <x-input-label for="prof" class="inline-block cursor-pointer" :value="__('Prof')"/>    
+                    <x-input-label for="prof" class="inline-block cursor-pointer" :value="__('Prof')" />
                 </div>
 
                 <div class="item flex-shrink-0">
                     <input type="radio" name="salutation" id="chief" value="chief" {{ old('salutation') == 'chief' ? 'checked' : '' }}>
-                    <x-input-label for="chief" class="inline-block cursor-pointer" :value="__('Chief')"/>    
+                    <x-input-label for="chief" class="inline-block cursor-pointer" :value="__('Chief')" />
                 </div>
 
                 <div class="item flex-shrink-0">
                     <input type="radio" name="salutation" id="engr" value="engr" {{ old('salutation') == 'engr' ? 'checked' : '' }}>
-                    <x-input-label for="engr" class="inline-block cursor-pointer" :value="__('Engr')"/>    
+                    <x-input-label for="engr" class="inline-block cursor-pointer" :value="__('Engr')" />
                 </div>
 
             </div>
 
             <x-input-error class="mt-2" :messages="$errors->get('salutation')" />
-            
+
         </div>
-        
+
+
+        <div class="w-full">
+            <x-input-label for="user" :is_required="true" :value="__('Select User Account')" />
+            <x-select-input name="user_id" id="user">
+                <option disabled selected>Select User</option>
+               @isset($users)
+                    @foreach($users as $user)
+                        <option value="{{ $user->id }}">{{ ucwords($user->name) }}</option>
+                    @endforeach
+               @endif
+            </x-select-input>
+        </div>
 
         <div class="flex items-center flex-col lg:flex-row gap-3">
             <div class="w-full">
@@ -83,7 +95,7 @@
         </div>
 
 
-         <div class="flex items-center flex-col lg:flex-row gap-3">
+        <div class="flex items-center flex-col lg:flex-row gap-3">
             <div class="w-full">
                 <x-input-label for="diploma" :value="__('Academic Diploma (HND, Bsc, BTecH, MTecH, Msc, ...etc)')" />
                 <x-text-input id="diploma" name="diploma" type="text" class="mt-1 block w-full" :value="old('diploma')" required />
@@ -105,7 +117,7 @@
                 <x-input-error class="mt-2" :messages="$errors->get('duration')" />
             </div>
 
-            
+
             <div class="w-full">
                 <x-input-label for="startDate" :is_required="true" :value="__('Internship Start Date')" />
                 <x-text-input id="startDate" name="start_date" type="date" class="mt-1 block w-full" :value="old('start_date')" required />
@@ -126,12 +138,12 @@
                 <div class="radio-group flex items-center gap-x-3 flex-wrap">
                     <div class="item flex-shrink-0">
                         <input type="radio" name="language" id="english" value="english" {{ old('language') == 'english' ? 'checked' : '' }}>
-                        <x-input-label for="english" class="inline-block cursor-pointer" :value="__('English')"/>
+                        <x-input-label for="english" class="inline-block cursor-pointer" :value="__('English')" />
                     </div>
-        
+
                     <div class="item flex-shrink-0">
                         <input type="radio" name="language" id="french" value="french" {{ old('language') == 'french' ? 'checked' : '' }}>
-                        <x-input-label for="french" class="inline-block cursor-pointer" :value="__('French')"/>    
+                        <x-input-label for="french" class="inline-block cursor-pointer" :value="__('French')" />
                     </div>
                 </div>
                 <x-input-error class="mt-2" :messages="$errors->get('language')" />

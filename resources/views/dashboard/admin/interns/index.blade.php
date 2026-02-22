@@ -12,7 +12,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
-            <x-table search_route="" bulk_route="{{ route('intern.bulk.actions') }}">
+            <x-interns-table search_route="" bulk_route="{{ route('intern.bulk.actions') }}">
 
                     <thead class="bg-gray-50">
                         <tr>
@@ -133,7 +133,7 @@
                         </tr>
                     </tfoot>
 
-            </x-table>
+            </x-interns-table>
     
             <div class="mt-6">
                 {{ $interns->links() }}

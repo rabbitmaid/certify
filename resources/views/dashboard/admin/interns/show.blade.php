@@ -59,8 +59,8 @@
                         </div>
 
                         <div>
-                            <p class="text-sm font-semibold text-gray-500">Matricule </p>
-                            <p class="text-lg">{{ $intern->matricule }}</p>
+                            <p class="text-sm font-semibold text-gray-500 ">Matricule </p>
+                            <p class="text-xl font-bold text-gray-900">{{ $intern->matricule }}</p>
                         </div>
                         <div>
                             <p class="text-sm font-semibold text-gray-500">ID Card Number</p>

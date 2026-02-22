@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Intern;
 use App\Models\User;
 use App\Services\MatriculeService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use function Laravel\Prompts\confirm;
@@ -15,7 +16,7 @@ class InternController extends Controller
     public function index()
     {
         return view('dashboard.admin.interns.index', [
-            'interns' => Intern::with('user')->orderByDesc('id')->paginate(5)
+            'interns' => Intern::with('user')->orderByDesc('id')->paginate(10)
         ]);
     }
 
@@ -114,7 +115,12 @@ class InternController extends Controller
         ]);
 
         $intern = Intern::findOrFail($validated['id']);
-        $intern->update(['status' => 'approved']);
+        $intern->update([
+            'status' => 'approved', 
+            'approved_at' => Carbon::now(),
+            'rejected_at' => null,
+            'unapproved_at' => null
+        ]);
 
          alert()->success('Submission Approved', 'You have successfully approved this interns submission');
 
@@ -129,7 +135,13 @@ class InternController extends Controller
         ]);
 
         $intern = Intern::findOrFail($validated['id']);
-        $intern->update(['status' => 'pending']);
+
+        $intern->update([
+            'status' => 'pending', 
+            'unapproved_at' => Carbon::now(),
+            'rejected_at' => null,
+            'approved_at' => null,
+        ]);
 
          alert()->success('Submission Unapproved', 'You have successfully set this interns submission to pending');
 
@@ -154,9 +166,22 @@ class InternController extends Controller
         $intern = Intern::findOrFail($validated['id']);
 
         if($validated['rejection_reason']) {
-            $intern->update(['status' => 'rejected', 'rejection_reason' => $validated['rejection_reason']]);
+
+            $intern->update([
+                'status' => 'rejected', 
+                'rejection_reason' => $validated['rejection_reason'], 
+                'rejected_at' => Carbon::now(),
+                'approved_at' => null,
+                'unapproved_at' => null
+            ]);
+
         }else {
-            $intern->update(['status' => 'rejected']);
+            $intern->update([
+                'status' => 'rejected',
+                'rejected_at' => Carbon::now(),
+                'approved_at' => null,
+                'unapproved_at' => null
+            ]);
         }
         
 

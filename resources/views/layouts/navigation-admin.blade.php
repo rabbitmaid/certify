@@ -28,6 +28,12 @@
                         {{ __('Interns') }}
                     </x-nav-link>
                 </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('internship-session.index')" :active="request()->routeIs('internship-session.*')">
+                        {{ __('Internship Session') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->
@@ -90,6 +96,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('intern.index')" :active="request()->routeIs('intern.*')">
                 {{ __('Interns') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('internship-session.index')" :active="request()->routeIs('intern.*')">
+                {{ __('Internship Sessions') }}
             </x-responsive-nav-link>
         </div>
 

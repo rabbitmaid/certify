@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\Dashboard\Admin\InternController;
+use App\Http\Controllers\Dashboard\Admin\InternshipSessionController;
 use App\Http\Controllers\Dashboard\Admin\SettingController;
 use App\Http\Controllers\Dashboard\Admin\TemplateController;
 use Illuminate\Support\Facades\Route;
@@ -43,6 +44,12 @@ Route::prefix('/dashboard')->middleware(['auth', 'role:admin', 'verified'])->gro
         Route::put('/update/{id}', [InternController::class, 'update'])->name('intern.update');
 
         Route::get('/{id}', [InternController::class, 'show'])->name('intern.show');
+    });
+
+    Route::prefix('internship-session')->group(function() {
+
+        Route::get("/", [InternshipSessionController::class, 'index'])->name('internship-session.index');
+
     });
 
     Route::get('/settings', [SettingController::class, 'index'])->name('setting.index');

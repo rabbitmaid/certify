@@ -44,6 +44,8 @@ document.addEventListener("DOMContentLoaded", () => {
                             form.submit();
                         }
                     });
+                }else {
+                    form.submit();
                 }
 
             });

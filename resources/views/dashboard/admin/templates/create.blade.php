@@ -12,16 +12,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-            <div class="flex justify-between items-center mb-6">
-                <h1 class="text-3xl font-bold text-primary">Upload</h1>
-
-                <a href="#" class="px-4 py-1.5 text-sm bg-primary hover:bg-primary/90 text-white rounded-lg font-semibold transition">
-                    Back
-                </a>
-            </div>
-
-            <div class="mt-8 bg-white shadow rounded-lg p-6 space-y-5">
+            <div class="bg-white shadow rounded-lg p-6 space-y-5">
                 <h3 class="font-semibold">Important Notice for Uploads!!</h3>
 
                 <ul class="list-disc ms-8 text-sm leading-relaxed">

@@ -61,7 +61,8 @@ class InternshipSessionController extends Controller
             'title' => ['required'],
             'start_date' => ['required', 'date', 'before:end_date'],
             'end_date' => ['required', 'date', 'after:start_date'],
-            'description' => ['nullable', 'max:255']
+            'description' => ['nullable', 'max:255'],
+            'status' => ['required']
         ]);
 
         $internshipSession->update($validated);

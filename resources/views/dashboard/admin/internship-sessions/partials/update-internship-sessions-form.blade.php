@@ -17,6 +17,17 @@
             <x-input-error class="mt-2" :messages="$errors->get('title')" />
         </div>
 
+        
+        <div class="w-full">
+            <x-input-label for="status" :is_required="true" :value="__('Internship Status')" />
+            <x-select-input name="status" id="status">
+                <option disabled {{ old('title', $internshipSession->title) ? '' : 'selected' }}>Select Status</option>
+                <option value="upcoming" {{ old('title', $internshipSession->title) === "upcoming" ? 'selected' : '' }}>Upcoming</option>
+                <option value="active" {{ old('title', $internshipSession->title) === "active" ? 'selected' : '' }}>Active</option>
+                <option value="completed" {{ old('title', $internshipSession->title) === "completed" ? 'selected' : '' }}>Completed</option>
+            </x-select-input>
+        </div>
+
         <div class="flex flex-col md:flex-row items-center justify-between gap-y-5 md:gap-y-0 md:gap-x-5">
             <div class="w-full">
                 <x-input-label for="startDate" :is_required="true" :value="__('Internship Start Date')" />

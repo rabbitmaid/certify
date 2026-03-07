@@ -62,7 +62,7 @@
                                 </svg>
                             </a>
 
-                            <form id="delete-form-{{ $internshipSession->id }}" action="" method="POST" class="delete-form inline">
+                            <form id="delete-form-{{ $internshipSession->id }}" action="{{ route('internship-session.destroy') }}" method="POST" class="delete-form inline">
                                 @csrf
                                 @method('DELETE')
 

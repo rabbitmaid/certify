@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\InternshipSession;
+use Exception;
 use Illuminate\Http\Request;
 
 class InternshipSessionController extends Controller
@@ -71,4 +72,23 @@ class InternshipSessionController extends Controller
 
     }
 
+
+    public function destroy(Request $request)
+    {
+        $validated = $request->validate([
+            'id' => ['required'],
+        ]);
+
+        $internshipSession = InternshipSession::findOrFail($validated['id']);
+
+        try {
+            $internshipSession->delete();
+            alert()->success('Internship Session Deleted', 'You have successfully deleted this session');
+            return redirect()->route('internship-session.index');
+        }   
+        catch(Exception $e) {
+            alert()->error('Internship Session Not Deleted', 'The delete request has failed');
+            return redirect()->route('internship-session.index');
+        }
+    }
 }

@@ -49,6 +49,11 @@ Route::prefix('/dashboard')->middleware(['auth', 'role:admin', 'verified'])->gro
     Route::prefix('internship-session')->group(function() {
 
         Route::get("/", [InternshipSessionController::class, 'index'])->name('internship-session.index');
+        Route::get("/{id}", [InternshipSessionController::class, 'show'])->name('internship-session.show');
+        Route::get("/create", [InternshipSessionController::class, 'create'])->name('internship-session.create');
+        Route::post("/store", [InternshipSessionController::class, 'store'])->name('internship-session.store');
+        Route::get("/edit/{id}", [InternshipSessionController::class, 'edit'])->name('internship-session.edit');
+        Route::put("/update/{id}", [InternshipSessionController::class, 'update'])->name('internship-session.update');
 
     });
 

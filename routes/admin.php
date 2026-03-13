@@ -4,17 +4,17 @@ use App\Http\Controllers\Dashboard\Admin\CertificateController;
 use App\Http\Controllers\Dashboard\Admin\InternController;
 use App\Http\Controllers\Dashboard\Admin\InternshipBatchController;
 use App\Http\Controllers\Dashboard\Admin\InternshipSessionController;
+use App\Http\Controllers\Dashboard\Admin\OverviewController;
 use App\Http\Controllers\Dashboard\Admin\SettingController;
 use App\Http\Controllers\Dashboard\Admin\TemplateController;
 use Illuminate\Support\Facades\Route;
 
 
 
+
 Route::prefix('/dashboard')->middleware(['auth', 'role:admin', 'verified'])->group(function(){
     
-    Route::get('/', function () {
-        return view('dashboard.admin.index');
-    })->name('dashboard');
+    Route::get('/', [OverviewController::class, 'index'])->name('dashboard');
 
     // templates
     Route::get('templates', [TemplateController::class, 'index'])->name('template.index');

@@ -126,7 +126,7 @@ class CertificateController extends Controller
 
         return view('dashboard.admin.certificates.create', [
             'internshipBatches' => InternshipBatch::orderByDesc('id')->get(),
-            'templates' => Template::orderByDesc('id')->get(),
+            'templates' => Template::where('is_active', 1)->orderByDesc('id')->get(),
             'heading' => $heading,
             'intro' => $intro,
             'description' => $description,

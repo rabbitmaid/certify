@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\Dashboard\Admin\CertificateController;
 use App\Http\Controllers\Dashboard\Admin\InternController;
 use App\Http\Controllers\Dashboard\Admin\InternshipBatchController;
 use App\Http\Controllers\Dashboard\Admin\InternshipSessionController;
@@ -69,6 +71,22 @@ Route::prefix('/dashboard')->middleware(['auth', 'role:admin', 'verified'])->gro
         Route::get("/{id}", [InternshipBatchController::class, 'show'])->name('internship-batch.show');
         
     });
+
+    // Generate attestation route
+     Route::prefix('certificate')->group(function() {
+        Route::get("/", [CertificateController::class, 'index'])->name('certificate.index');
+        Route::get("/create", [CertificateController::class, 'create'])->name('certificate.create');
+        Route::post("/store", [CertificateController::class, 'store'])->name('certificate.store');
+        Route::delete("/destroy", [CertificateController::class, 'destroy'])->name('certificate.destroy');
+        Route::get('/view/{certificate}', [CertificateController::class, 'view'])
+    ->name('certificate.view');
+
+        // submissions
+        Route::get("/submissions", [CertificateController::class, 'submission'])->name('submission.index');
+        Route::post("/submissions/generate", [CertificateController::class, 'generate'])->name('submission.generate');
+        Route::delete("/submissions/destroy", [CertificateController::class, 'destroySubmission'])->name('submission.destroy');
+
+     });
 
     Route::get('/settings', [SettingController::class, 'index'])->name('setting.index');
 });

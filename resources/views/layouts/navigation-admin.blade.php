@@ -40,6 +40,19 @@
                         {{ __('Internship Batch') }}
                     </x-nav-link>
                 </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('submission.index')" :active="request()->routeIs('submission.index')">
+                        {{ __('Submissions') }}
+                    </x-nav-link>
+                </div>
+                
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('certificate.index')" :active="request()->routeIs('certificate.*')">
+                        {{ __('Certificates') }}
+                    </x-nav-link>
+                </div>
+
             </div>
 
             <!-- Settings Dropdown -->
@@ -108,6 +121,12 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('internship-batch.index')" :active="request()->routeIs('batch.*')">
                 {{ __('Internship Batches') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('submission.index')" :active="request()->routeIs('submission.index')">
+                {{ __('Submissions') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('certificate.index')" :active="request()->routeIs('certificate.*')">
+                {{ __('Certificates') }}
             </x-responsive-nav-link>
         </div>
 

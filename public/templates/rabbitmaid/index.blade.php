@@ -168,7 +168,6 @@
             top: 85px;
             right: 59px;
         }
-
     </style>
 </head>
 
@@ -178,26 +177,23 @@
         <p class="authorization-up">
             RC / YAO / 2023 / B /1851 DU 09 OCTOBER 2023
         </p>
-        <h1>Certificate <br /> <span class="part">Of Training</span></h1>
+        <h1>{!! $data['heading'] !!}</h1>
         <img src="{{ public_path('templates/rabbitmaid/assets/images/logo.png') }}" class="logo" />
-        <p class="year">2026</p>
-        <p class="intro">Proudly Presented To</p>
-        <p class="stroke">John Jobelane druad druid </p>
-        <p class="name">John Jobelane druad druid </p>
+        <p class="year">{!! $data['year'] !!}</p>
+        <p class="intro">{!! $data['intro'] !!}</p>
+        <p class="stroke">{!! $name !!} </p>
+        <p class="name">{!! $name !!}</p>
         <p class="desc">
-            During his Training at ESCHOSYS TECHOLOGIES, <br />
-            he gained hands-on experience in Graphic design, web development, SEO, GitHub,<br />
-            and Digital Marketing. He successfully applied his skills to various projects,<br />
-            contributing to both technical and creative aspects of the company. <br />
+            {!! $data['description'] !!}    
         </p>
 
         <p class="authorization">
             RC / YAO / 2023 / B /1851 DU 09 OCTOBER 2023
         </p>
 
-        <p class="notice">This Certificate is issued to serve the purpose to which it is intended</p>
+        <p class="notice">{!! $data['notice'] !!}</p>
 
-         <p class="uuid">4f91f7be-d071-44cf-af1d-52ba147d528b</p>
+         <p class="uuid">{{ $uuid }}</p>
         <img src="{{ public_path('templates/rabbitmaid/assets/images/qr-code.png') }}" class="qr-code" />
     </div>
 

@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\Dashboard\Admin\InternController;
+use App\Http\Controllers\Dashboard\Admin\InternshipBatchController;
 use App\Http\Controllers\Dashboard\Admin\InternshipSessionController;
 use App\Http\Controllers\Dashboard\Admin\SettingController;
 use App\Http\Controllers\Dashboard\Admin\TemplateController;
@@ -27,25 +28,18 @@ Route::prefix('/dashboard')->middleware(['auth', 'role:admin', 'verified'])->gro
         Route::get('/', [InternController::class, 'index'])->name('intern.index');
         Route::get('/create', [InternController::class, 'create'])->name('intern.create');
         Route::post('/store', [InternController::class, 'store'])->name('intern.store');
-
         Route::patch('/approve', [InternController::class, 'approve'])->name('intern.approve');
         Route::patch('/unapprove', [InternController::class, 'unapprove'])->name('intern.unapprove');
-
         Route::get('/reject/{id}', [InternController::class, 'rejectReason'])->name('intern.reject.reason');
-        
         Route::put('/reject', [InternController::class, 'reject'])->name('intern.reject');
-
-
         Route::post('/bulk', [InternController::class, 'bulkActions'])->name('intern.bulk.actions');
-
         Route::delete('/destroy', [InternController::class, 'destroy'])->name('intern.destroy');
-
         Route::get('/edit/{id}', [InternController::class, 'edit'])->name('intern.edit');
         Route::put('/update/{id}', [InternController::class, 'update'])->name('intern.update');
-
         Route::get('/{id}', [InternController::class, 'show'])->name('intern.show');
     });
 
+    // Internship Session
     Route::prefix('internship-session')->group(function() {
 
         Route::get("/", [InternshipSessionController::class, 'index'])->name('internship-session.index');
@@ -55,6 +49,18 @@ Route::prefix('/dashboard')->middleware(['auth', 'role:admin', 'verified'])->gro
         Route::get("/edit/{id}", [InternshipSessionController::class, 'edit'])->name('internship-session.edit');
         Route::put("/update/{id}", [InternshipSessionController::class, 'update'])->name('internship-session.update');
         Route::get("/{id}", [InternshipSessionController::class, 'show'])->name('internship-session.show');
+    });
+
+    // Internship Batches
+    Route::prefix('internship-batch')->group(function() {
+
+        Route::get("/", [InternshipBatchController::class, 'index'])->name('internship-batch.index');
+
+        Route::get("/create", [InternshipBatchController::class, 'create'])->name('internship-batch.create');
+
+        Route::post("/store", [InternshipBatchController::class, 'store'])->name('internship-batch.store');
+
+
     });
 
     Route::get('/settings', [SettingController::class, 'index'])->name('setting.index');

@@ -34,6 +34,12 @@
                         {{ __('Internship Session') }}
                     </x-nav-link>
                 </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('internship-batch.index')" :active="request()->routeIs('internship-batch.*')">
+                        {{ __('Internship Batch') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->
@@ -99,6 +105,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('internship-session.index')" :active="request()->routeIs('intern.*')">
                 {{ __('Internship Sessions') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('internship-batch.index')" :active="request()->routeIs('batch.*')">
+                {{ __('Internship Batches') }}
             </x-responsive-nav-link>
         </div>
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Certificate;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -11,8 +12,15 @@ class PageController extends Controller
         return view('pages.index');
     }
 
-    public function track()
+    public function track(Request $request)
     {
-        return view('pages.verify');
+        if($request->query('reference')) {
+            $reference = $request->query('reference');
+            $certificate = Certificate::where('reference', $reference)->first();
+            return view('pages.verify', compact('certificate'));
+        }
+        else {
+            return view('pages.verify');
+        }
     }
 }

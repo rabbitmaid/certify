@@ -12,7 +12,7 @@ class Intern extends Model
 {
     use HasFactory, SoftDeletes;
     
-    protected $fillable = ["user_id", "matricule", "salutation", "id_card_number", "phone_number", "school", "diploma", "department", "level",  "duration", "start_date", "end_date", "date_of_birth", "language", "other_information", "status", "rejection_reason" , 'approved_at', 'rejected_at' ,'unapproved_at'];
+    protected $fillable = ["user_id", "matricule", "salutation", "id_card_number", "phone_number", "school", "diploma", "department", "level",  "duration", "start_date", "end_date", "date_of_birth", "language", "other_information", "status", "rejection_reason", "portfolio_link" , 'approved_at', 'rejected_at' ,'unapproved_at'];
 
     protected $casts = [
         "start_date" => "date",

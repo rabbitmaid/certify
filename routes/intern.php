@@ -1,13 +1,15 @@
 <?php
 
 use App\Http\Controllers\Dashboard\Intern\OnboardingController;
+use App\Http\Controllers\Dashboard\Intern\OverviewController;
 use Illuminate\Support\Facades\Route;
 
 
 Route::prefix('intern/dashboard')->middleware(['auth', 'role:intern', 'intern-profile', 'intern-rejected', 'verified'])->group(function () {
-    Route::get('/', function () {
-        return view('dashboard.intern.index');
-    })->name('dashboard.intern');
+
+    Route::get('/', [OverviewController::class , 'index'])->name('dashboard.intern');
+    Route::patch('/update', [OverviewController::class , 'update'])->name('dashboard.intern.update');
+
 });
 
 Route::get('/intern/onboarding', [OnboardingController::class, 'index'])->middleware(['intern-no-profile'])->name('dashboard.intern.onboarding');

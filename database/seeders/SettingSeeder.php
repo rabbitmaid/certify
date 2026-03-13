@@ -19,6 +19,7 @@ class SettingSeeder extends Seeder
             ['name' => 'matricule_seperator', 'value' => '-'],
             ['name' => 'authorization', 'value' => 'RC / YAO / 2023 / B /1851 DU 09 OCTOBER 2023'],
             ['name' => 'logo', 'value' => ''],
+            ['name' => 'default_porfolio_link', 'value' => 'https://eschosys.com']
         ];
 
         foreach ($settings as $setting) {

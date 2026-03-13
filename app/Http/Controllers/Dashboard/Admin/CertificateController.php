@@ -86,7 +86,8 @@ class CertificateController extends Controller
                 $uuid = Str::uuid();
 
                 //---
-                $qrUrl = "https://eschosys.com";
+                $qrUrl = $intern->portfolio_link ?? setting('default_porfolio_link');
+                
                 $qrCodeApiLink = "http://api.qrserver.com/v1/create-qr-code/?data=" 
                 . urlencode($qrUrl) 
                 . "&size=300x300";

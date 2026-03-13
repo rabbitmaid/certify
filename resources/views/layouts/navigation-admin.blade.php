@@ -31,13 +31,13 @@
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('internship-session.index')" :active="request()->routeIs('internship-session.*')">
-                        {{ __('Internship Session') }}
+                        {{ __('Sessions') }}
                     </x-nav-link>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('internship-batch.index')" :active="request()->routeIs('internship-batch.*')">
-                        {{ __('Internship Batch') }}
+                        {{ __('Batches') }}
                     </x-nav-link>
                 </div>
 
@@ -117,10 +117,10 @@
                 {{ __('Interns') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('internship-session.index')" :active="request()->routeIs('intern.*')">
-                {{ __('Internship Sessions') }}
+                {{ __('Sessions') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('internship-batch.index')" :active="request()->routeIs('batch.*')">
-                {{ __('Internship Batches') }}
+                {{ __('Batches') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('submission.index')" :active="request()->routeIs('submission.index')">
                 {{ __('Submissions') }}

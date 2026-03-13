@@ -12,10 +12,20 @@ use Illuminate\Http\Request;
 class InternshipBatchController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
+        if($request->query('search')) {
+            $search = $request->query('search');
+
+            $internshipBatches = InternshipBatch::where('title', 'LIKE', "%$search%")
+                ->orderByDesc('id')
+                ->paginate(10);
+        }else {
+            $internshipBatches = InternshipBatch::orderByDesc('id')->paginate(10);
+        }
+
         return view('dashboard.admin.internship-batches.index', [
-            'internshipBatches' => InternshipBatch::orderByDesc('id')->paginate(10)
+            'internshipBatches' => $internshipBatches
         ]);
     }
 

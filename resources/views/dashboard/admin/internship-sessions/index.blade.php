@@ -16,6 +16,7 @@
 
                 <thead class="bg-gray-50">
                     <tr>
+                        <th>#</th>
                         <th>Title</th>
                         <th>Start Date</th>
                         <th>End Date</th>
@@ -27,6 +28,7 @@
                 <tbody class="bg-white divide-y divide-gray-200">
                     @forelse($internshipSessions as $internshipSession)
                     <tr class="hover:bg-gray-50 transition">
+                        <td>{{ $loop->iteration }}</td>
                         <td>{{ $internshipSession->title }}</td>
                         <td>{{ $internshipSession->start_date->toDateString() }}</td>
                         <td>{{ $internshipSession->end_date->toDateString() }}</td>
@@ -88,6 +90,7 @@
 
                 <tfoot class="bg-gray-50">
                     <tr>
+                        <th>#</th>
                         <th>Title</th>
                         <th>Start Date</th>
                         <th>End Date</th>

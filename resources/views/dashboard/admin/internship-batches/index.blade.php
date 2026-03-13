@@ -16,6 +16,7 @@
 
                 <thead class="bg-gray-50">
                     <tr>
+                        <th>#</th>
                         <th>Title</th>
                         <th>Session</th>
                         <th>Category</th>
@@ -27,6 +28,7 @@
                 <tbody class="bg-white divide-y divide-gray-200">
                     @forelse($internshipBatches as $internshipBatch)
                     <tr class="hover:bg-gray-50 transition">
+                        <td>{{ $loop->iteration }}</td>
                         <td>{{ $internshipBatch->title }}</td>
                         <td>{{ $internshipBatch->internshipSession?->title }}</td>
                         <td>{{ $internshipBatch->category }}</td>
@@ -75,6 +77,7 @@
 
                 <tfoot class="bg-gray-50">
                     <tr>
+                        <th>#</th>
                         <th>Title</th>
                         <th>Session</th>
                         <th>Category</th>

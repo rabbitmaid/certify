@@ -16,17 +16,46 @@ use Illuminate\Support\Str;
 class CertificateController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
+        if($request->query('search')) {
+            $search = $request->query('search');
+
+            $certificates = Certificate::with(['getRecipient'])
+                    ->whereHas('getRecipient', function($query) use($search) {
+                        $query->where('name', 'LIKE', "%{$search}%");
+                    })
+                    ->orWhere('reference', 'LIKE', "%$search%")
+                    ->orderByDesc('id')
+                    ->paginate(10);
+
+        }else {
+            $certificates = Certificate::orderByDesc('id')->paginate(10);
+        }
+
         return view('dashboard.admin.certificates.index', [
-            'certificates' => Certificate::orderByDesc('id')->paginate(10)
+            'certificates' => $certificates
         ]);
     }
 
-    public function submission()
+    public function submission(Request $request)
     {
+        if($request->query('search')) {
+            $search = $request->query('search');
+
+            $certificateSubmissions = CertificateSubmission::with('internshipBatch')
+                        ->whereHas('internshipBatch', function($query) use($search){
+                            $query->where('title', 'LIKE', "%{$search}%");
+                        })
+                        ->orderByDesc('id')
+                        ->paginate(10);
+
+        }else {
+            $certificateSubmissions = CertificateSubmission::orderByDesc('id')->paginate(10);
+        }
+
         return view('dashboard.admin.certificates.submission', [
-            'certificateSubmissions' => CertificateSubmission::orderByDesc('id')->paginate(10)
+            'certificateSubmissions' => $certificateSubmissions
         ]);
     }
 

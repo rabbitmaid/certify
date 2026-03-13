@@ -10,10 +10,20 @@ use Illuminate\Http\Request;
 class InternshipSessionController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
+        if($request->query('search')) {
+            $search = $request->query('search');
+
+            $internshipSessions = InternshipSession::where('title', 'LIKE', "%$search%")
+                ->orderByDesc('id')
+                ->paginate(10);
+        }else {
+            $internshipSessions = InternshipSession::orderByDesc('id')->paginate(10);
+        }
+
         return view('dashboard.admin.internship-sessions.index', [
-            'internshipSessions' => InternshipSession::orderByDesc('id')->paginate(10)
+            'internshipSessions' => $internshipSessions
         ]);
     }
 

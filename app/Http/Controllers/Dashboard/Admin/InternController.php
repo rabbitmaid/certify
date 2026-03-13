@@ -13,10 +13,22 @@ use function Laravel\Prompts\confirm;
 
 class InternController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        if($request->query('search')) {
+            $search = $request->query('search');
+            $interns = Intern::with('user')
+                ->whereHas('user', function ($query) use ($search) {
+                    $query->where('name', 'LIKE', "%{$search}%");
+                })
+                ->orderByDesc('id')
+                ->paginate(10);
+        }else {
+            $interns = Intern::with('user')->orderByDesc('id')->paginate(10);
+        }
+
         return view('dashboard.admin.interns.index', [
-            'interns' => Intern::with('user')->orderByDesc('id')->paginate(10)
+            'interns' => $interns
         ]);
     }
 

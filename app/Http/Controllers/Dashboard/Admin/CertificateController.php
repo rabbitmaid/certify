@@ -40,10 +40,20 @@ class CertificateController extends Controller
         $batchInterns = $submission->internshipBatch->interns;
         $template = $submission->template->slug;
 
-      
 
         try {
             foreach ($batchInterns as $intern) {
+
+                // do not create multiple pdfs for same submission and same user
+                $existing = Certificate::where('recipient', $intern->user_id)
+                ->where('submission_id', $submission->id)
+                ->first();
+
+                if ($existing) {
+                    continue; // Skip regeneration
+                }
+
+            
 
                 $uuid = Str::uuid();
 

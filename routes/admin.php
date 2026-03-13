@@ -81,6 +81,8 @@ Route::prefix('/dashboard')->middleware(['auth', 'role:admin', 'verified'])->gro
         Route::get('/view/{certificate}', [CertificateController::class, 'view'])
     ->name('certificate.view');
 
+      Route::post('/bulk', [CertificateController::class, 'bulkActions'])->name('certificate.bulk.actions');
+
         // submissions
         Route::get("/submissions", [CertificateController::class, 'submission'])->name('submission.index');
         Route::post("/submissions/generate", [CertificateController::class, 'generate'])->name('submission.generate');

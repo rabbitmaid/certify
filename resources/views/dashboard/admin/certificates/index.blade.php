@@ -12,11 +12,11 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-            <x-table.default search_route="">
+            <x-table.certificates search_route="" bulk_route="{{ route('certificate.bulk.actions') }}">
 
                 <thead class="bg-gray-50">
                     <tr>
-                        <th>#</th>
+                       <th><input type="checkbox" id="selectAllCheckBoxes"></th>
                         <th>Reference</th>
                         <th>Intern</th>
                         <th>Matricule</th>
@@ -30,7 +30,7 @@
 
                     <tr class="hover:bg-gray-50 transition">
                         <td>
-                            {{ $loop->iteration }}
+                            <input type="checkbox" name="certificates[]" class="selectCheckBox" value="{{ $certificate->id }}" form="bulkForm">
                         </td>
                         <td>{{ $certificate->reference }}</td>
                         <td>{{ $certificate->getRecipient->name }}</td>
@@ -69,7 +69,7 @@
 
                 <tfoot class="bg-gray-50">
                     <tr>
-                        <th>#</th>
+                        <th></th>
                         <th>Reference</th>
                         <th>Intern</th>
                         <th>Matricule</th>
@@ -78,7 +78,7 @@
                     </tr>
                 </tfoot>
 
-            </x-table.default>
+            </x-table.certificates>
 
             <div class="mt-6">
                 {{ $certificates->links() }}

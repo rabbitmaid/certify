@@ -9,6 +9,7 @@ use App\Models\InternshipBatch;
 use App\Models\Template;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -39,16 +40,31 @@ class CertificateController extends Controller
         $batchInterns = $submission->internshipBatch->interns;
         $template = $submission->template->slug;
 
+      
+
         try {
             foreach ($batchInterns as $intern) {
 
                 $uuid = Str::uuid();
 
+                //---
+                $qrUrl = "https://eschosys.com";
+                $qrCodeApiLink = "http://api.qrserver.com/v1/create-qr-code/?data=" 
+                . urlencode($qrUrl) 
+                . "&size=300x300";
+                
+                $response = Http::get($qrCodeApiLink);
+
+                $qrCodeFile = 'qrcodes/' . $uuid . '.png';
+                Storage::disk('public')->put($qrCodeFile, $response->body());
+
+                //----
                 $pdf = Pdf::loadView("templates.$template.index", [
                     'name' => $intern->user->name,
                     'data' => $submission->data,
                     'uuid' =>  $uuid,
                     'authorization' => setting('authorization'),
+                    'qrCodeFile' => $qrCodeFile
 
                 ])->setPaper('a4', 'landscape')->setOption(['defaultFont' => 'sans-serif']);
 
@@ -187,5 +203,26 @@ class CertificateController extends Controller
         alert()->success('Certificate Deleted', 'You have successfully deleted the certificate');
 
         return redirect()->route('certificate.index');
+    }
+
+    public function bulkActions(Request $request)
+    {
+         $validated = $request->validate([
+            'bulk_option' => ['required', 'string', 'in:delete'],
+            'certificates.*' => ['integer', 'exists:certificates,id'],
+        ]);
+
+        if($validated['bulk_option'] === 'delete') {
+
+            foreach($validated['certificates'] as $id)  {
+                $intern = Certificate::findOrFail($id);
+                $intern->delete();
+            }
+
+            alert()->success('Certificates Deleted', 'You have successfully deleted the selected certificates'); 
+            return redirect()->route('certificate.index');
+        }
+    
+        return redirect()->back();
     }
 }

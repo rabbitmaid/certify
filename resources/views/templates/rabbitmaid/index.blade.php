@@ -11,9 +11,10 @@
             margin: 0;
             padding: 0;
         }
+
         .a4 {
-            width:100%;
-            height:100%;
+            width: 100%;
+            height: 100%;
             background: url("{{ public_path('templates/rabbitmaid/assets/images/layout.jpg') }}") no-repeat center / contain;
         }
 
@@ -21,7 +22,7 @@
             position: relative;
         }
 
-        .page > .authorization-up {
+        .page>.authorization-up {
             color: #e69e0e;
             position: absolute;
             font-size: 18px;
@@ -115,7 +116,7 @@
             font-family: Arial, Helvetica, sans-serif;
         }
 
-        .page > .authorization {
+        .page>.authorization {
             position: absolute;
             font-size: 12.5px;
             top: 450px;
@@ -153,13 +154,17 @@
             font-family: 'Courier New', Courier, monospace;
         }
 
-        .page>.qr-code {
-            width: 140.8px;
-            height: 140.8px;
-            object-fit: contain;
+        .page > .qr-wrapper {
             position: absolute;
             left: 943px;
             top: 604px;
+            padding: 15px;
+            background: white;
+        }
+
+        .qr-wrapper img {
+            width: 120px;
+            height: 120px;
         }
 
         .page>.logo {
@@ -169,6 +174,7 @@
             top: 85px;
             right: 59px;
         }
+
     </style>
 </head>
 
@@ -185,7 +191,7 @@
         <p class="stroke">{!! $name !!} </p>
         <p class="name">{!! $name !!}</p>
         <p class="desc">
-            {!! $data['description'] !!}    
+            {!! $data['description'] !!}
         </p>
 
         <p class="authorization">
@@ -194,8 +200,12 @@
 
         <p class="notice">{!! $data['notice'] !!}</p>
 
-         <p class="uuid">{{ $uuid }}</p>
-        <img src="{{ public_path('templates/rabbitmaid/assets/images/qr-code.png') }}" class="qr-code" />
+        <p class="uuid">{{ $uuid }}</p>
+        {{-- <img src="{{ public_path('templates/rabbitmaid/assets/images/qr-code.png') }}" class="qr-code" /> --}}
+
+        <div class="qr-wrapper">
+            <img src="{{ public_path('storage/'. $qrCodeFile) }}" class="qr-code" />
+        </div>
     </div>
 
 </body>

@@ -47,7 +47,9 @@ class CertificateController extends Controller
                 $pdf = Pdf::loadView("templates.$template.index", [
                     'name' => $intern->user->name,
                     'data' => $submission->data,
-                    'uuid' =>  $uuid
+                    'uuid' =>  $uuid,
+                    'authorization' => setting('authorization'),
+
                 ])->setPaper('a4', 'landscape')->setOption(['defaultFont' => 'sans-serif']);
 
                 $filePath = "certificates/$uuid.pdf";

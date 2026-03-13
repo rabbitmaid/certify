@@ -175,7 +175,7 @@
 
     <div class="page a4">
         <p class="authorization-up">
-            RC / YAO / 2023 / B /1851 DU 09 OCTOBER 2023
+            {{ $authorization }}
         </p>
         <h1>{!! $data['heading'] !!}</h1>
         <img src="{{ public_path('templates/rabbitmaid/assets/images/logo.png') }}" class="logo" />
@@ -188,7 +188,7 @@
         </p>
 
         <p class="authorization">
-            RC / YAO / 2023 / B /1851 DU 09 OCTOBER 2023
+            {{ $authorization }}
         </p>
 
         <p class="notice">{!! $data['notice'] !!}</p>

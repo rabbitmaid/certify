@@ -53,8 +53,7 @@ class CertificateController extends Controller
                     continue; // Skip regeneration
                 }
 
-            
-
+        
                 $uuid = Str::uuid();
 
                 //---
@@ -67,6 +66,7 @@ class CertificateController extends Controller
 
                 $qrCodeFile = 'qrcodes/' . $uuid . '.png';
                 Storage::disk('public')->put($qrCodeFile, $response->body());
+                
 
                 //----
                 $pdf = Pdf::loadView("templates.$template.index", [
@@ -74,6 +74,7 @@ class CertificateController extends Controller
                     'data' => $submission->data,
                     'uuid' =>  $uuid,
                     'authorization' => setting('authorization'),
+                    'logo' => setting('logo'),
                     'qrCodeFile' => $qrCodeFile
 
                 ])->setPaper('a4', 'landscape')->setOption(['defaultFont' => 'sans-serif']);

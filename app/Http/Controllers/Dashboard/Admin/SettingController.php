@@ -25,10 +25,28 @@ class SettingController extends Controller
             'company_name' => 'required|string|max:255',
             'matricule_prefix' => 'required|string|max:50',
             'matricule_seperator' => 'required|string|max:10',
-            'authorization' => 'required|string'
+            'authorization' => 'required|string',
+            'logo' => 'required|image|mimes:png,jpg,jpeg|max:2048',
         ]);
 
+    
+        // Handle logo separately
+        if ($request->hasFile('logo')) {
+
+            $logoPath = $request->file('logo')->store('settings', 'public');
+
+            \App\Models\Setting::updateOrCreate(
+                ['name' => 'logo'],
+                ['value' => $logoPath]
+            );
+        }
+
+
+       // Save other settings
         foreach ($validated as $key => $value) {
+
+            if ($key === 'logo') continue;
+
             \App\Models\Setting::updateOrCreate(
                 ['name' => $key],
                 ['value' => $value]

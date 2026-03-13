@@ -185,7 +185,7 @@
             {{ $authorization }}
         </p>
         <h1>{!! $data['heading'] !!}</h1>
-        <img src="{{ public_path('templates/rabbitmaid/assets/images/logo.png') }}" class="logo" />
+        <img src="{{ asset('storage/' . $logo ) }}" class="logo" />
         <p class="year">{!! $data['year'] !!}</p>
         <p class="intro">{!! $data['intro'] !!}</p>
         <p class="stroke">{!! $name !!} </p>

@@ -89,4 +89,5 @@ Route::prefix('/dashboard')->middleware(['auth', 'role:admin', 'verified'])->gro
      });
 
     Route::get('/settings', [SettingController::class, 'index'])->name('setting.index');
+    Route::patch('/settings/update', [SettingController::class, 'update'])->name('setting.update');
 });

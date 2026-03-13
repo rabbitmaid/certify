@@ -5,26 +5,64 @@
         </h2>
     </header>
 
-    <form method="post" action="" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('setting.update') }}" class="mt-6 space-y-6">
         @csrf
         @method('patch')
 
+        {{-- Company Name --}}
         <div>
             <x-input-label for="company_name" :value="__('Company Name')" />
-            <x-text-input id="company_name" name="company_name" type="text" class="mt-1 block w-full"  required autofocus  />
+            <x-text-input
+                id="company_name"
+                name="company_name"
+                type="text"
+                class="mt-1 block w-full"
+                :value="old('company_name', $settings['company_name'] ?? '')"
+                required
+                autofocus
+            />
             <x-input-error class="mt-2" :messages="$errors->get('company_name')" />
         </div>
 
+        {{-- Matricule Prefix --}}
         <div>
-            <x-input-label for="reference_prefix" :value="__('Reference Prefix')" />
-            <x-text-input id="reference_prefix" name="reference_prefix" type="text" class="mt-1 block w-full"  required autofocus />
-            <x-input-error class="mt-2" :messages="$errors->get('reference_prefix')" />
+            <x-input-label for="matricule_prefix" :value="__('Matricule Prefix')" />
+            <x-text-input
+                id="matricule_prefix"
+                name="matricule_prefix"
+                type="text"
+                class="mt-1 block w-full"
+                :value="old('matricule_prefix', $settings['matricule_prefix'] ?? '')"
+                required
+            />
+            <x-input-error class="mt-2" :messages="$errors->get('matricule_prefix')" />
         </div>
-        
 
+        {{-- Matricule Seperator --}}
+        <div>
+            <x-input-label for="matricule_seperator" :value="__('Matricule Seperator')" />
+            <x-text-input
+                id="matricule_seperator"
+                name="matricule_seperator"
+                type="text"
+                class="mt-1 block w-full"
+                :value="old('matricule_seperator', $settings['matricule_seperator'] ?? '')"
+                required
+            />
+            <x-input-error class="mt-2" :messages="$errors->get('matricule_seperator')" />
+        </div>
+
+        {{-- Authorization --}}
         <div>
             <x-input-label for="authorization" :value="__('Authorization')" />
-            <x-text-input id="authorization" name="authorization" type="text" class="mt-1 block w-full" required />
+            <x-text-input
+                id="authorization"
+                name="authorization"
+                type="text"
+                class="mt-1 block w-full"
+                :value="old('authorization', $settings['authorization'] ?? '')"
+                required
+            />
             <x-input-error class="mt-2" :messages="$errors->get('authorization')" />
         </div>
 
@@ -38,8 +76,11 @@
                     x-transition
                     x-init="setTimeout(() => show = false, 2000)"
                     class="text-sm text-gray-600"
-                >{{ __('Saved.') }}</p>
+                >
+                    {{ __('Saved.') }}
+                </p>
             @endif
         </div>
+
     </form>
 </section>

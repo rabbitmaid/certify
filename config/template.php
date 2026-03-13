@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'path' => resource_path('\views\templates')
+    'path' => resource_path('views/templates')
 ];

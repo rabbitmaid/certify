@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Certificate;
+use App\Models\InternshipBatch;
 use Illuminate\Database\Eloquent\Model;
 
 class CertificateSubmission extends Model
@@ -26,7 +27,7 @@ class CertificateSubmission extends Model
 
     public function internshipBatch()
     {
-        return $this->belongsTo(internshipBatch::class);
+        return $this->belongsTo(InternshipBatch::class);
     }
 
     public function template()

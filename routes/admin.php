@@ -53,14 +53,13 @@ Route::prefix('/dashboard')->middleware(['auth', 'role:admin', 'verified'])->gro
 
     // Internship Batches
     Route::prefix('internship-batch')->group(function() {
-
         Route::get("/", [InternshipBatchController::class, 'index'])->name('internship-batch.index');
-
         Route::get("/create", [InternshipBatchController::class, 'create'])->name('internship-batch.create');
-
         Route::post("/store", [InternshipBatchController::class, 'store'])->name('internship-batch.store');
-
-
+        Route::delete('/destroy', [InternshipBatchController::class, 'destroy'])->name('internship-batch.destroy');
+        Route::get("/edit/{id}", [InternshipBatchController::class, 'edit'])->name('internship-batch.edit');
+        Route::put("/update/{id}", [InternshipBatchController::class, 'update'])->name('internship-batch.update');
+        Route::get("/{id}", [InternshipBatchController::class, 'show'])->name('internship-batch.show');
     });
 
     Route::get('/settings', [SettingController::class, 'index'])->name('setting.index');

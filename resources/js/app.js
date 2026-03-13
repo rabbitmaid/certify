@@ -1,5 +1,4 @@
 import './bootstrap';
-import "./table";
 import "./delete";
 import "./select-check";
 

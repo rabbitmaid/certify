@@ -78,6 +78,8 @@ class TemplateService
         $templateDirectory = config('template.path');
         $templates = new Collection;
 
+        dd($templateDirectory);
+
         // Check if template directory exist
         if (is_dir($templateDirectory)) {
 

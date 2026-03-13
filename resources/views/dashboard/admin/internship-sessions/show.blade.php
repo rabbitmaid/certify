@@ -1,9 +1,9 @@
-<x-app-layout pageTitle="Intern #{{ $internshipSession->id }}">
+<x-app-layout pageTitle="Session #{{ $internshipSession->id }}">
 
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __("Intern #".$internshipSession->id) }}
+                {{ __("Session #".$internshipSession->id) }}
             </h2>
 
             <x-link-button href="{{ route('internship-session.index') }}">Back</x-link-button>

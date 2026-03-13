@@ -122,6 +122,7 @@
             left: -98px;
             transform: rotate(90deg);
             font-weight: 700;
+            text-transform: uppercase;
         }
 
 

@@ -40,7 +40,7 @@
 
         <div>
             <x-input-label for="logo" :value="__('Logo')" />
-            <input type="file" name="logo" accept=".png,.jpg,.jpeg" required class="border p-2 rounded block w-full">
+            <input type="file" name="logo" accept=".png,.jpg,.jpeg" class="border p-2 rounded block w-full">
             <x-input-error :messages="$errors->get('logo')" class="mt-2" />
         </div>
 

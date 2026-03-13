@@ -12,7 +12,9 @@ class MatriculeService {
         $random1 = Str::random(6);
         $random2 = Str::random(4);
 
-        $matricule = sprintf("%s%s-%s-%s",$prefix, $year, $random1, $random2);
+        $separator = setting('matricule_seperator') ?? "-";
+
+        $matricule = sprintf("%s%s$separator%s$separator%s",$prefix, $year, $random1, $random2);
 
         $existingMatricule = self::matriculeExist($matricule); 
 

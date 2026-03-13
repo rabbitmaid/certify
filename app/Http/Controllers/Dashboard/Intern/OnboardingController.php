@@ -35,7 +35,7 @@ class OnboardingController extends Controller
         ]);
 
         $validated['user_id'] = Auth::user()->id;
-        $validated['matricule'] = MatriculeService::generate();
+        $validated['matricule'] = MatriculeService::generate(setting('matricule_prefix'));
 
         Intern::create($validated);
 

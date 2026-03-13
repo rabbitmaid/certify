@@ -26,7 +26,7 @@ class SettingController extends Controller
             'matricule_prefix' => 'required|string|max:50',
             'matricule_seperator' => 'required|string|max:10',
             'authorization' => 'required|string',
-            'logo' => 'required|image|mimes:png,jpg,jpeg|max:2048',
+            'logo' => 'nullable|image|mimes:png,jpg,jpeg|max:2048',
         ]);
 
     

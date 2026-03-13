@@ -48,7 +48,7 @@ class InternController extends Controller
             'other_information' => ['nullable', 'string', 'max:1000'],
         ]);
 
-        $validated['matricule'] = MatriculeService::generate();
+        $validated['matricule'] = MatriculeService::generate(setting('matricule_prefix'));
 
         Intern::create($validated);
 

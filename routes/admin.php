@@ -59,7 +59,15 @@ Route::prefix('/dashboard')->middleware(['auth', 'role:admin', 'verified'])->gro
         Route::delete('/destroy', [InternshipBatchController::class, 'destroy'])->name('internship-batch.destroy');
         Route::get("/edit/{id}", [InternshipBatchController::class, 'edit'])->name('internship-batch.edit');
         Route::put("/update/{id}", [InternshipBatchController::class, 'update'])->name('internship-batch.update');
+
+        Route::get("/attach/{id}", [InternshipBatchController::class, 'attach'])->name('internship-batch.attach');
+
+        Route::post("/attach/store/{id}", [InternshipBatchController::class, 'attachStore'])->name('internship-batch.attach.store');
+
+        Route::delete("/detach/{id}", [InternshipBatchController::class, 'detach'])->name('internship-batch.detach');
+
         Route::get("/{id}", [InternshipBatchController::class, 'show'])->name('internship-batch.show');
+        
     });
 
     Route::get('/settings', [SettingController::class, 'index'])->name('setting.index');

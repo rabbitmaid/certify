@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Intern;
 use App\Models\InternshipBatch;
 use App\Models\InternshipSession;
 use Exception;
@@ -30,6 +31,43 @@ class InternshipBatchController extends Controller
         return view('dashboard.admin.internship-batches.show', [
             'internshipBatch' => InternshipBatch::findOrFail($id)
         ]);
+    }
+
+    public function attach(int $id)
+    {
+        $internshipBatch = InternshipBatch::findOrFail($id);
+
+        return view('dashboard.admin.internship-batches.attach', [
+            'internshipBatch' => $internshipBatch,
+            'interns' => Intern::whereNotIn('id', $internshipBatch->interns()->pluck('interns.id')->toArray())->orderBy('id', 'desc')->get(),
+            'attachedInterns' => $internshipBatch->interns()->orderBy('id', 'desc')->paginate(10)
+        ]);
+    }
+
+    public function attachStore(Request $request, int $id)
+    {
+        $validated = $request->validate([
+            'intern_id' => ['required'],
+        ]);
+
+        $internshipBatch = InternshipBatch::findOrFail($id);
+        $internshipBatch->interns()->attach($validated['intern_id']);
+
+        alert()->success('Intern Added to Batch', 'You have successfully added the intern to the batch');
+        return redirect()->route('internship-batch.attach', $id);
+    }
+
+    public function detach(Request $request, int $id)
+    {
+        $validated = $request->validate([
+            'intern_id' => ['required'],
+        ]);
+
+        $internshipBatch = InternshipBatch::findOrFail($id);
+        $internshipBatch->interns()->detach($validated['intern_id']);
+
+        alert()->success('Intern Detached from Batch', 'You have successfully removed the intern from the batch');
+        return redirect()->route('internship-batch.attach', $id);
     }
 
     public function store(Request $request)

@@ -33,7 +33,7 @@
                         <td>{{ $internshipBatch->created_at->toDateString() }}</td>
                         <td class="flex items-center justify-end gap-x-2">
 
-                            <a href="" class="bg-blue-800 text-white uppercase font-semibold text-xs tracking-widest py-1 px-2 rounded text-center hover:bg-blue-800/80 hover:opacity-95 hover:shadow-sm" title="Add Interns">
+                            <a href="{{ route('internship-batch.attach', $internshipBatch->id) }}" class="bg-blue-800 text-white uppercase font-semibold text-xs tracking-widest py-1 px-2 rounded text-center hover:bg-blue-800/80 hover:opacity-95 hover:shadow-sm" title="Add Interns">
                                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11 11V5H13V11H19V13H13V19H11V13H5V11H11Z"></path></svg>
                             </a>
 

@@ -19,6 +19,26 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+    document.querySelectorAll(".detach-button").forEach((button) => {
+        button.addEventListener("click", function () {
+            let form = this.closest(".detach-form");
+
+            Swal.fire({
+                title: "Are you sure?",
+                text: "This action cannot be undone!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#1f2937",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, detach!",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        });
+    });
+
 
     //bulk delete
      document.querySelectorAll(".bulk-button").forEach((button) => {

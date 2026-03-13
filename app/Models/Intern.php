@@ -29,8 +29,13 @@ class Intern extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function internSessions(): BelongsToMany
+    public function internshipSessions(): BelongsToMany
     {
         return $this->belongsToMany(InternshipSession::class);
+    }
+
+    public function internshipBatches(): BelongsToMany
+    {
+        return $this->belongsToMany(InternshipBatch::class);
     }
 }

@@ -18,7 +18,7 @@ class SettingSeeder extends Seeder
             ['name' => 'matricule_prefix', 'value' => 'ES'],
             ['name' => 'matricule_seperator', 'value' => '-'],
             ['name' => 'authorization', 'value' => 'RC / YAO / 2023 / B /1851 DU 09 OCTOBER 2023'],
-            ['name' => 'logo', 'value' => 'images/logo.png'],
+            ['name' => 'logo', 'value' => ''],
         ];
 
         foreach ($settings as $setting) {

@@ -9,16 +9,15 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
 
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-y-20 gap-x-0 xl:gap-x-5 mt-16">
-                <div>
-                    <h4 class="text-base uppercase tracking-wider font-semibold ">Your Matricule</h4>
-                    <div class="bg-white border border-gray-200  py-5 px-8 rounded-lg mt-4 shadow overflow-hidden  flex items-center justify-center h-full text-gray-900 text-lg md:text-xl tracking-widest font-bold uppercase">
-                        {{ Auth::user()->intern->matricule ?? "" }}
-                    </div>
+
+            <div>
+                <h4 class="text-base uppercase tracking-wider font-semibold ">Your Matricule</h4>
+                <div class="bg-white border border-gray-200  py-5 px-8 rounded-lg mt-4 shadow overflow-hidden  flex items-center justify-center h-full text-gray-900 text-lg md:text-xl tracking-widest font-bold uppercase">
+                    {{ Auth::user()->intern->matricule ?? "" }}
                 </div>
-
-
             </div>
+
+
 
 
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">

@@ -19,16 +19,16 @@
    <div class="flex justify-center items-center gap-2">
         @auth
             @if(auth()->user()->hasRole('admin'))
-                <a href="{{ route('dashboard') }}" class="bg-blue-600 hover:bg-blue-800 transition-colors ease-in-out text-white py-2 px-3 rounded-lg w-fit flex-shrink-0">Dashboard</a>
+                <a href="{{ route('dashboard') }}" class="bg-blue-600 hover:bg-blue-800 transition-colors ease-in-out text-white py-2 px-3 rounded-lg w-fit flex-shrink-0 uppercase font-semibold tracking-widest text-sm">Dashboard</a>
             @endif
 
             @if(auth()->user()->hasRole('intern'))
-                <a href="{{ route('dashboard.intern') }}" class="bg-blue-600 hover:bg-blue-800 transition-colors ease-in-out text-white py-2 px-3 rounded-lg w-fit flex-shrink-0">Dashboard</a>
+                <a href="{{ route('dashboard.intern') }}" class="bg-blue-600 hover:bg-blue-800 transition-colors ease-in-out text-white py-2 px-3 rounded-lg w-fit flex-shrink-0 uppercase font-semibold tracking-widest text-sm">Dashboard</a>
             @endif
 
             <form action="{{ route('logout') }}" method="POST">
                 @csrf
-                <button class="bg-orange-600 hover:bg-orange-800 transition-colors ease-in-out text-white py-2 px-3 rounded-lg w-fit flex-shrink-0">Logout</button>
+                <button class="bg-orange-600 hover:bg-orange-800 transition-colors ease-in-out text-white py-2 px-3 rounded-lg w-fit flex-shrink-0 uppercase tracking-widest text-sm font-semibold">Logout</button>
             </form>
     @endauth
    </div>

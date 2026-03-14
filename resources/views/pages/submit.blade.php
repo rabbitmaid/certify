@@ -6,10 +6,10 @@
 
     <div class="w-full mx-auto">
 
-        <section class="max-w-4xl w-full mx-auto min-h-screen py-20">
+        <section class="max-w-4xl w-full mx-auto min-h-screen py-10">
 
             <header class="text-center mb-8">
-                <h1 class="text-3xl mb-4 font-medium text-gray-900">
+                <h1 class="text-xl md:text-2xl mb-4 font-semibold text-gray-900">
                     {{ __('Submit Attestation or Certificate Request') }}
                 </h1>
 

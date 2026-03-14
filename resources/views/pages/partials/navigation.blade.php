@@ -3,7 +3,7 @@
         <img class="w-full" src="{{ asset('images/logo-dark.png') }}" alt="Logo">
     </a>
 
-    <nav class="w-full flex items-center justify-center gap-5 mb-8 lg:mb-0">
+    <nav class="w-full flex flex-col md:flex-row text-sm items-center justify-center gap-5 mb-8 lg:mb-0">
         <a class="text-neutral-200 hover:text-orange-600 font-semibold flex-shrink-0 uppercase tracking-wider transition-colors delay-75 ease-in-out {{ request()->routeIs('home') ? "text-orange-600" : '' }}" href="{{ route('home') }}">Home</a>
         <a class="text-neutral-200 hover:text-orange-600 font-semibold flex-shrink-0 uppercase tracking-wider transition-colors delay-75 ease-in-out {{ request()->routeIs('track') ? "text-orange-600" : '' }}" href="{{ route('track') }}">Track and Trace</a>
         <a class="text-neutral-200 hover:text-orange-600 font-semibold flex-shrink-0 uppercase tracking-wider transition-colors delay-75 ease-in-out {{ request()->routeIs('apply') ? "text-orange-600" : '' }}" href="{{ route('register') }}">Apply For Internship</a>

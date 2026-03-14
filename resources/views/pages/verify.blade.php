@@ -6,10 +6,10 @@
 
     <div class="w-full mx-auto">
 
-        <section class="w-full mx-auto bg-neutral-50 min-h-screen py-20">
+        <section class="w-full mx-auto bg-neutral-50 min-h-screen py-10">
 
             <header class="text-center mb-8">
-                <h1 class="text-3xl mb-4 font-medium text-gray-900">
+                <h1 class="text-xl md:text-2xl mb-4 font-semibold text-gray-900">
                     {{ __('Check Attestation or Certificate') }}
                 </h1>
 

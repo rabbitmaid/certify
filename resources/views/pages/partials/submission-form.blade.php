@@ -1,4 +1,4 @@
-<section>
+<section class="px-10 md:px-0">
 
     <form method="post" action="{{ route('submit.store') }}" class="mt-6 space-y-6">
         @csrf

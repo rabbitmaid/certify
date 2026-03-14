@@ -188,6 +188,10 @@ class CertificateController extends Controller
             $existing = Certificate::where('submission_id', $submission->id)->first();
 
             if ($existing) {
+
+                toast('A certificate already exists for this submission', 'error');
+                return back();
+
             } else {
 
                 $uuid = Str::uuid();

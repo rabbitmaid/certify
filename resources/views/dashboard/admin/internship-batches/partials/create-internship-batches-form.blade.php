@@ -9,7 +9,7 @@
 
         <div class="w-full">
             <x-input-label for="internship_session" :is_required="true" :value="__('Select Internship Session')" />
-            <x-select-input name="internship_session_id" id="internship_session">
+            <x-select-input name="internship_session_id" id="internship_session" class="searchable">
                 <option disabled selected>Select Session</option>
                 @isset($internshipSessions)
                     @foreach($internshipSessions as $internshipSession)

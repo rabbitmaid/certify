@@ -49,7 +49,7 @@
 
         <div class="w-full">
             <x-input-label for="user" :is_required="true" :value="__('Select User Account')" />
-            <x-select-input name="user_id" id="user">
+            <x-select-input name="user_id" id="user" class="searchable">
                 <option disabled selected>Select User</option>
                @isset($users)
                     @foreach($users as $user)

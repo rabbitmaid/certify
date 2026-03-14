@@ -4,7 +4,7 @@
     <div class="flex items-center flex-col lg:flex-row gap-3">
         <div class="w-full">
             <x-input-label for="internship_batch" :is_required="true" :value="__('Select Internship Batch')" />
-            <x-select-input name="internship_batch_id" id="internship_batch">
+            <x-select-input name="internship_batch_id" id="internship_batch" class="searchable">
                 <option disabled selected>Select Batch</option>
                 @isset($internshipBatches)
                     @foreach($internshipBatches as $internshipBatch)
@@ -17,7 +17,7 @@
 
         <div class="w-full">
             <x-input-label for="template" :is_required="true" :value="__('Select Certificate Template')" />
-            <x-select-input name="template_id" id="template">
+            <x-select-input name="template_id" id="template" class="searchable">
                 <option disabled selected>Select Template</option>
                 @isset($templates)
                     @foreach($templates as $template)

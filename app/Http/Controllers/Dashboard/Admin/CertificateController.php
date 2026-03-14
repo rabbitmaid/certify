@@ -131,11 +131,11 @@ class CertificateController extends Controller
 
             // dd($e);
 
-            $submission->update([
-                'status' => 'failed'
-            ]);
+            // $submission->update([
+            //     'status' => 'failed'
+            // ]);
 
-            alert()->error('Unexpected Error', 'An error occured during the certificate creation process.');
+            toast('An error occured during the certificate creation process. Please try again');
             return back();
         }
     }
@@ -253,15 +253,15 @@ class CertificateController extends Controller
 
         } catch (\Exception $e) {
 
-            dd($e);
+            // dd($e);
             
-             $submission->update([
-                'user_id' => auth()->id(),
-                'template_id' => $validated['template_id'],
-                'status' => 'failed'
-            ]);
+            //  $submission->update([
+            //     'user_id' => auth()->id(),
+            //     'template_id' => $validated['template_id'],
+            //     'status' => 'failed'
+            // ]);
 
-            toast('Unexpected Error Certificate not generated', 'error');
+            toast('An error occured during the certificate creation process. Please try again');
 
             return back();
         }

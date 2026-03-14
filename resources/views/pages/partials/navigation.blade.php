@@ -7,12 +7,13 @@
         <a class="text-neutral-200 hover:text-orange-600 font-semibold flex-shrink-0 uppercase tracking-wider transition-colors delay-75 ease-in-out {{ request()->routeIs('home') ? "text-orange-600" : '' }}" href="{{ route('home') }}">Home</a>
         <a class="text-neutral-200 hover:text-orange-600 font-semibold flex-shrink-0 uppercase tracking-wider transition-colors delay-75 ease-in-out {{ request()->routeIs('track') ? "text-orange-600" : '' }}" href="{{ route('track') }}">Track and Trace</a>
         <a class="text-neutral-200 hover:text-orange-600 font-semibold flex-shrink-0 uppercase tracking-wider transition-colors delay-75 ease-in-out {{ request()->routeIs('apply') ? "text-orange-600" : '' }}" href="{{ route('register') }}">Apply For Internship</a>
+        <a class="text-neutral-200 hover:text-orange-600 font-semibold flex-shrink-0 uppercase tracking-wider transition-colors delay-75 ease-in-out {{ request()->routeIs('submit') ? "text-orange-600" : '' }}" href="{{ route('submit') }}">Submit Request</a>
     </nav>
 
 
 
    @guest
-    <a href="{{ route('login') }}" class="bg-orange-600 hover:bg-orange-800 transition-colors ease-in-out text-white py-2 px-3 rounded-lg w-fit flex-shrink-0">Account Login</a>
+    <a href="{{ route('login') }}" class="bg-orange-600 hover:bg-orange-800 transition-colors ease-in-out text-white py-2 px-3 rounded-lg w-fit flex-shrink-0 uppercase font-semibold tracking-widest text-sm"> Account Login</a>
    @endguest
 
    <div class="flex justify-center items-center gap-2">

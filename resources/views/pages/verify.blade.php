@@ -1,4 +1,4 @@
-<x-page-layout>
+<x-page-layout  pageTitle="Track and Trace Certificates">
 
     <header class="w-full px-8 xl:px-0 bg-blue-950 shadow-sm">
         @include('pages.partials.navigation')
@@ -62,12 +62,12 @@
 
                                                 <p>
                                                     <span class="font-medium text-gray-700">Recipient:</span>
-                                                    {{ $certificate->getRecipient->name }}
+                                                    {{ $certificate->getRecipient->name ?? $certificate->content['name'] ?? "--" }}
                                                 </p>
 
                                                 <p>
                                                     <span class="font-medium text-gray-700">Matricule:</span>
-                                                    {{ $certificate->getRecipient->intern->matricule ?? '-' }}
+                                                    {{ $certificate->getRecipient->intern->matricule ?? '--' }}
                                                 </p>
 
                                                 <p>

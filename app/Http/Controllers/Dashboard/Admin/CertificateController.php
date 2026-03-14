@@ -18,18 +18,17 @@ class CertificateController extends Controller
 
     public function index(Request $request)
     {
-        if($request->query('search')) {
+        if ($request->query('search')) {
             $search = $request->query('search');
 
             $certificates = Certificate::with(['getRecipient'])
-                    ->whereHas('getRecipient', function($query) use($search) {
-                        $query->where('name', 'LIKE', "%{$search}%");
-                    })
-                    ->orWhere('reference', 'LIKE', "%$search%")
-                    ->orderByDesc('id')
-                    ->paginate(10);
-
-        }else {
+                ->whereHas('getRecipient', function ($query) use ($search) {
+                    $query->where('name', 'LIKE', "%{$search}%");
+                })
+                ->orWhere('reference', 'LIKE', "%$search%")
+                ->orderByDesc('id')
+                ->paginate(10);
+        } else {
             $certificates = Certificate::orderByDesc('id')->paginate(10);
         }
 
@@ -40,17 +39,16 @@ class CertificateController extends Controller
 
     public function submission(Request $request)
     {
-        if($request->query('search')) {
+        if ($request->query('search')) {
             $search = $request->query('search');
 
             $certificateSubmissions = CertificateSubmission::with('internshipBatch')
-                        ->whereHas('internshipBatch', function($query) use($search){
-                            $query->where('title', 'LIKE', "%{$search}%");
-                        })
-                        ->orderByDesc('id')
-                        ->paginate(10);
-
-        }else {
+                ->whereHas('internshipBatch', function ($query) use ($search) {
+                    $query->where('title', 'LIKE', "%{$search}%");
+                })
+                ->orderByDesc('id')
+                ->paginate(10);
+        } else {
             $certificateSubmissions = CertificateSubmission::orderByDesc('id')->paginate(10);
         }
 
@@ -75,39 +73,40 @@ class CertificateController extends Controller
 
                 // do not create multiple pdfs for same submission and same user
                 $existing = Certificate::where('recipient', $intern->user_id)
-                ->where('submission_id', $submission->id)
-                ->first();
+                    ->where('submission_id', $submission->id)
+                    ->first();
 
                 if ($existing) {
                     continue; // Skip regeneration
                 }
 
-        
+
                 $uuid = Str::uuid();
 
                 //---
                 $qrUrl = $intern->portfolio_link ?? setting('default_porfolio_link');
-                
-                $qrCodeApiLink = "http://api.qrserver.com/v1/create-qr-code/?data=" 
-                . urlencode($qrUrl) 
-                . "&size=300x300";
-                
+
+                $qrCodeApiLink = "http://api.qrserver.com/v1/create-qr-code/?data="
+                    . urlencode($qrUrl)
+                    . "&size=300x300";
+
                 $response = Http::get($qrCodeApiLink);
 
                 $qrCodeFile = 'qrcodes/' . $uuid . '.png';
                 Storage::disk('public')->put($qrCodeFile, $response->body());
-                
 
-                //----
-                $pdf = Pdf::loadView("templates.$template.index", [
+
+                $pdfData = [
                     'name' => $intern->user->name,
                     'data' => $submission->data,
                     'uuid' =>  $uuid,
                     'authorization' => setting('authorization'),
                     'logo' => setting('logo'),
                     'qrCodeFile' => $qrCodeFile
+                ];
 
-                ])->setPaper('a4', 'landscape')->setOption(['defaultFont' => 'sans-serif']);
+                //----
+                $pdf = Pdf::loadView("templates.$template.index", $pdfData)->setPaper('a4', 'landscape')->setOption(['defaultFont' => 'sans-serif']);
 
                 $filePath = "certificates/$uuid.pdf";
                 Storage::put($filePath, $pdf->output());
@@ -118,7 +117,7 @@ class CertificateController extends Controller
                     'recipient' => $intern->user->id,
                     'generator' => auth()->id(),
                     'file_path' => $filePath,
-                    'data' => $submission->data,
+                    'content' => $pdfData,
                 ]);
             }
 
@@ -130,7 +129,7 @@ class CertificateController extends Controller
             return back();
         } catch (\Exception $e) {
 
-            dd($e);
+            // dd($e);
 
             $submission->update([
                 'status' => 'failed'
@@ -139,6 +138,132 @@ class CertificateController extends Controller
             alert()->error('Unexpected Error', 'An error occured during the certificate creation process.');
             return back();
         }
+    }
+
+    public function individual(int $id)
+    {
+        $heading = 'Certificate <br /> <span>Of Training</span>';
+
+        $intro = '<strong>Proudly Presented To</strong>';
+
+        $description = 'During his Training at ESCHOSYS TECHOLOGIES, <br />he gained hands-on experience in Graphic design, web development, SEO, GitHub,<br />and Digital Marketing. He successfully applied his skills to various projects,<br />contributing to both technical and creative aspects of the company. <br />';
+
+        $notice = '<em>This Certificate is issued to serve the purpose to which it is intended.</em>';
+
+        $year = date('Y');
+
+        $certificateSubmission = CertificateSubmission::findOrFail($id);
+
+        return view('dashboard.admin.certificates.individual', [
+            'submission' => $certificateSubmission,
+            'templates' => Template::where('is_active', 1)->orderByDesc('id')->get(),
+            'heading' => $heading,
+            'intro' => $intro,
+            'description' => $description,
+            'notice' => $notice,
+            'year' => $year,
+            'name' => $certificateSubmission->data['name']
+        ]);
+    }
+
+    public function individualGenerate(Request $request)
+    {
+        $validated = $request->validate([
+            'submission_id' => 'required',
+            'template_id' => ['required'],
+            'name' => ['required', 'string'],
+            'heading' => ['required', 'string'],
+            'intro' => ['required', 'string'],
+            'year' => ['required', 'integer', 'digits:4', 'min:1900'],
+            'description' => ['required', 'string', 'max:400'],
+            'notice' => ['required', 'string'],
+        ]);
+
+        try {
+
+            $submission = CertificateSubmission::findOrFail($validated['submission_id']);
+            $template = Template::findOrFail($validated['template_id'])?->slug;
+
+            // do not create multiple pdfs for same submission
+            $existing = Certificate::where('submission_id', $submission->id)->first();
+
+            if ($existing) {
+            } else {
+
+                $uuid = Str::uuid();
+
+                //---
+                $qrUrl = $submission->data['portfolio_link'] ?? setting('default_porfolio_link');
+
+                $qrCodeApiLink = "http://api.qrserver.com/v1/create-qr-code/?data="
+                    . urlencode($qrUrl)
+                    . "&size=300x300";
+
+                $response = Http::get($qrCodeApiLink);
+
+                $qrCodeFile = 'qrcodes/' . $uuid . '.png';
+                Storage::disk('public')->put($qrCodeFile, $response->body());
+
+                $submissionData = [
+                    'heading' => $validated['heading'],
+                    'intro' => $validated['intro'],
+                    'year' => $validated['year'],
+                    'description' => $validated['description'],
+                    'notice' => $validated['notice']
+                ];
+
+                $pdfData = [
+                    'name' => $validated['name'],
+                    'data' => $submissionData,
+                    'uuid' =>  $uuid,
+                    'authorization' => setting('authorization'),
+                    'logo' => setting('logo'),
+                    'qrCodeFile' => $qrCodeFile
+                ];
+
+                //----
+                $pdf = Pdf::loadView("templates.$template.index", $pdfData)->setPaper('a4', 'landscape')->setOption(['defaultFont' => 'sans-serif']);
+
+                $filePath = "certificates/$uuid.pdf";
+                Storage::put($filePath, $pdf->output());
+
+
+                Certificate::create([
+                    'reference' => $uuid,
+                    'submission_id' =>  $submission->id,
+                    'generator' => auth()->id(),
+                    'file_path' => $filePath,
+                    'content' => $pdfData,
+                ]);
+            }
+
+            $submission->update([
+                'user_id' => auth()->id(),
+                'template_id' => $validated['template_id'],
+                'status' => 'generated'
+            ]);
+
+            toast('Certificate generated', 'success');
+
+            return redirect()->route('certificate.index');
+
+        } catch (\Exception $e) {
+
+            dd($e);
+            
+             $submission->update([
+                'user_id' => auth()->id(),
+                'template_id' => $validated['template_id'],
+                'status' => 'failed'
+            ]);
+
+            toast('Unexpected Error Certificate not generated', 'error');
+
+            return back();
+        }
+
+
+ 
     }
 
     public function create()
@@ -241,29 +366,28 @@ class CertificateController extends Controller
         $intern = Certificate::findOrFail($validated['id']);
         $intern->delete();
 
-        alert()->success('Certificate Deleted', 'You have successfully deleted the certificate');
-
+        toast('You have successfully deleted the certificate', 'success');
         return redirect()->route('certificate.index');
     }
 
     public function bulkActions(Request $request)
     {
-         $validated = $request->validate([
+        $validated = $request->validate([
             'bulk_option' => ['required', 'string', 'in:delete'],
             'certificates.*' => ['integer', 'exists:certificates,id'],
         ]);
 
-        if($validated['bulk_option'] === 'delete') {
+        if ($validated['bulk_option'] === 'delete') {
 
-            foreach($validated['certificates'] as $id)  {
+            foreach ($validated['certificates'] as $id) {
                 $intern = Certificate::findOrFail($id);
                 $intern->delete();
             }
 
-            alert()->success('Certificates Deleted', 'You have successfully deleted the selected certificates'); 
+            toast('You have successfully deleted the selected certificates', 'success');
             return redirect()->route('certificate.index');
         }
-    
+
         return redirect()->back();
     }
 }

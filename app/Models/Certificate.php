@@ -13,11 +13,11 @@ class Certificate extends Model
         'generator',
         'reference',
         'file_path',
-        'data',
+        'content',
     ];
 
     protected $casts = [
-        'data' => 'array',
+        'content' => 'array',
     ];
 
     public function getGenerator()

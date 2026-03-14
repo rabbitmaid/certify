@@ -14,6 +14,7 @@ class CertificateSubmission extends Model
         'template_id',
         'data',
         'status',
+        'type'
     ];
 
     protected $casts = [

@@ -85,7 +85,11 @@ Route::prefix('/dashboard')->middleware(['auth', 'role:admin', 'verified'])->gro
 
         // submissions
         Route::get("/submissions", [CertificateController::class, 'submission'])->name('submission.index');
-        Route::post("/submissions/generate", [CertificateController::class, 'generate'])->name('submission.generate');
+        Route::post("/submissions/batch/generate", [CertificateController::class, 'generate'])->name('submission.generate');
+
+        Route::get("/submissions/individual/{id}", [CertificateController::class, 'individual'])->name('submission.individual');
+        Route::post("/submissions/individual/generate", [CertificateController::class, 'individualGenerate'])->name('submission.individual.generate');
+
         Route::delete("/submissions/destroy", [CertificateController::class, 'destroySubmission'])->name('submission.destroy');
 
      });

@@ -7,10 +7,12 @@ use App\Services\FakeService;
 
 Route::get('/', [PageController::class, 'index'])->name('home');
 Route::get('/track', [PageController::class, 'track'])->name('track');
+Route::get('/submit', [PageController::class, 'submit'])->name('submit');
+Route::post('/submit/store', [PageController::class, 'submitStore'])->name('submit.store');
 
-Route::get('/test', function () {
-    return FakeService::generate();
-});
+// Route::get('/test', function () {
+//     return FakeService::generate();
+// });
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

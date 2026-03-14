@@ -18,7 +18,7 @@
                     <tr>
                        <th><input type="checkbox" id="selectAllCheckBoxes"></th>
                         <th>Reference</th>
-                        <th>Intern</th>
+                        <th>Intern / Individual</th>
                         <th>Matricule</th>
                         <th>Created At</th>
                         <th class="text-end">Actions</th>
@@ -33,8 +33,8 @@
                             <input type="checkbox" name="certificates[]" class="selectCheckBox" value="{{ $certificate->id }}" form="bulkForm">
                         </td>
                         <td>{{ $certificate->reference }}</td>
-                        <td>{{ $certificate->getRecipient->name }}</td>
-                        <td><strong>{{ $certificate->getRecipient->intern->matricule ?? '' }}</strong></td>
+                        <td>{{ $certificate->getRecipient->name ?? $certificate->content['name'] ?? '--' }}</td>
+                        <td><strong>{{ $certificate->getRecipient->intern->matricule ?? '--' }}</strong></td>
                         <td>{{ $certificate->created_at->toDateTimeString() }}</td>
                         <td class="flex items-center justify-end gap-x-2">
 
@@ -71,7 +71,7 @@
                     <tr>
                         <th></th>
                         <th>Reference</th>
-                        <th>Intern</th>
+                        <th>Intern / Individual</th>
                         <th>Matricule</th>
                         <th>Created At</th>
                         <th class="text-end">Actions</th>
